@@ -34,11 +34,10 @@ const daniel = {
 
 <div align="center">
 
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/danieln3m0)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/danieln3m0)
+[![Instagram](https://img.shields.io/badge/Instagram-@francis_daniel029-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/francis_daniel029/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/francis-daniel-mamani-silva-562ab6307)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/danieln3m0)
-[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/danieln3m0)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/danieln3m0)
+![Discord](https://img.shields.io/badge/Discord-darkn3m0%238070-7289DA?style=for-the-badge&logo=discord&logoColor=white)
 
 </div>
 
