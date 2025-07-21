@@ -158,7 +158,7 @@ const daniel = {
 
 ---
 
-### 🐍 Snake Game de Contribuciones
+## 🐍 Contribuciones
 
 <div align="center">
   
