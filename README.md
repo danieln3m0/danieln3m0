@@ -1,6 +1,6 @@
 <div align="center">
   
-# 🌟 ¡Hola! Soy Daniel N3M0 👋
+# 🌟 ¡Hola! Soy Francis Daniel 👋
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=4000&pause=1000&color=00F7FF&background=00000000&center=true&vCenter=true&width=435&lines=Software+Engineering+Student;Cybersecurity+Enthusiast;Competitive+Programmer;Full+Stack+Developer;Anime+Lover+%F0%9F%98%8B" alt="Typing SVG" />
 
