@@ -23,7 +23,7 @@ const daniel = {
 };
 ```
 
-- � Actualmente trabajando en proyectos de **ciberseguridad**
+- � Actualmente trabajando en proyectos de **Desarrollo de paginas web**
 - 🌱 Aprendiendo **ethical hacking** y **desarrollo full-stack**
 - 💬 Pregúntame sobre **JavaScript, Python, React**
 - ⚡ Dato curioso: **Duermo más de 8 horas al día** 😴
