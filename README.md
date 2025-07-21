@@ -158,13 +158,12 @@ const daniel = {
 
 ---
 
-## 📈 Contribuciones
+### 🐍 Snake Game de Contribuciones
 
 <div align="center">
-
-<img src="https://github.com/danieln3m0/raw/output/github-contribution-grid-snake.svg" alt="Snake animation" />
-
+  <img src="https://github.com/danieln3m0/danieln3m0/raw/output/github-contribution-grid-snake.svg" alt="Snake animation" />
 </div>
+
 
 ---
 
