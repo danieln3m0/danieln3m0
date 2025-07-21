@@ -162,7 +162,15 @@ const daniel = {
 
 <div align="center">
 
-<img src="https://github.com/danieln3m0/danieln3m0/blob/output/github-contribution-grid-snake-dark.svg" alt="Snake animation" />
+<img src="https://ghchart.rshah.org/409ba5/danieln3m0" alt="GitHub Contribution Chart" width="90%"/>
+
+</div>
+
+### � Snake Game de Contribuciones
+
+<div align="center">
+
+<img src="https://github.com/Platane/snk/raw/output/github-contribution-grid-snake.svg" alt="Snake animation" />
 
 </div>
 
