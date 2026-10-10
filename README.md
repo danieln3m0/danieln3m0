@@ -41,7 +41,7 @@ Cada repositorio está dibujado como el patrón de pliegue (展開図, *tenkaizu
 
 <img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/lenguajes.svg" width="100%" alt="言語, lenguajes del código por bytes en 12 repos propios: TypeScript 45 %, HTML 19 %, Dart 18 %, JavaScript 7,8 %, Java 5,2 %, Otros 4,3 %.">
 
-<img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/ritmo.svg" width="100%" alt="週, ritmo semanal: contribuciones del último año por día de la semana: lunes 61, martes 22, miércoles 58, jueves 45, viernes 129, sábado 111, domingo 131. Racha actual: 9 días seguidos, la más larga del año (2 oct – 10 oct). Más activos: viernes y domingo.">
+<img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/ritmo.svg" width="100%" alt="週, ritmo semanal: contribuciones del último año por día de la semana: lunes 60, martes 23, miércoles 58, jueves 45, viernes 126, sábado 114, domingo 131. Racha actual: 9 días seguidos, la más larga del año (2 oct – 10 oct). Más activos: viernes y domingo.">
 
 <details>
 <summary>Ver los datos de las estadísticas</summary>
@@ -67,12 +67,12 @@ Cada repositorio está dibujado como el patrón de pliegue (展開図, *tenkaizu
 
 | Día | Contribuciones |
 | --- | ---: |
-| lunes | 61 |
-| martes | 22 |
+| lunes | 60 |
+| martes | 23 |
 | miércoles | 58 |
 | jueves | 45 |
-| viernes | 129 |
-| sábado | 111 |
+| viernes | 126 |
+| sábado | 114 |
 | domingo | 131 |
 
 Racha actual: 9 días seguidos, la más larga del año (2 oct – 10 oct).
