@@ -25,6 +25,7 @@ export const sections = {
   obras: { jp: '作品', es: 'Obras' },
   notacion: { jp: '記号', es: 'Cómo leer los patrones' },
   teselado: { jp: 'テセレーション', es: 'Teselado' },
+  estadisticas: { jp: '統計', es: 'Estadísticas' },
   trayectoria: { jp: '経歴', es: 'Trayectoria' },
   herramientas: { jp: '道具', es: 'Herramientas' },
 }
@@ -34,4 +35,5 @@ export const JP = [
   '折り紙', '展開図', '谷折り', '山折り', '作品', '経歴', '道具', '記号', '折り図',
   'テセレーション', '二位', '論文', '派生', 'ハッカソン', 'ダニエル', '切り紙', '和紙',
   '千代紙', '麻の葉', '青海波', '亀甲', '連絡', '一', '二', '三', '四', '週',
+  '統計', '千羽鶴', '言語',
 ]

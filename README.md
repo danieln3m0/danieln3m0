@@ -34,6 +34,52 @@ Cada repositorio está dibujado como el patrón de pliegue (展開図, *tenkaizu
 
 <img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/teselado.svg" width="100%" alt="Teselado de contribuciones del último año: una torsión cuadrada de papel por semana; cuanto más girada la torsión, más contribuciones hubo esa semana.">
 
+<h3><img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/tira-estadisticas.svg" height="44" alt="統計 · Estadísticas"></h3>
+
+<!-- estadisticas:inicio -->
+<img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/senbazuru.svg" width="100%" alt="千羽鶴, mil grullas: 557 de 1000 contribuciones en el último año, contadas como grullas de papel colgadas en hilos por tipo (cada grulla equivale a 50): commits 348, pull requests 92, issues 34, revisiones 1, repos nuevos 7, privadas 75.">
+
+<img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/lenguajes.svg" width="100%" alt="言語, lenguajes del código por bytes en 12 repos propios: TypeScript 45 %, HTML 19 %, Dart 18 %, JavaScript 7,8 %, Java 5,2 %, Otros 4,3 %.">
+
+<img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/ritmo.svg" width="100%" alt="週, ritmo semanal: contribuciones del último año por día de la semana: lunes 61, martes 22, miércoles 58, jueves 45, viernes 129, sábado 111, domingo 131. Racha actual: 9 días seguidos, la más larga del año (2 oct – 10 oct). Más activos: viernes y domingo.">
+
+<details>
+<summary>Ver los datos de las estadísticas</summary>
+
+| Contribuciones del último año | Cantidad |
+| --- | ---: |
+| commits | 348 |
+| pull requests | 92 |
+| issues | 34 |
+| revisiones | 1 |
+| repos nuevos | 7 |
+| privadas | 75 |
+| **total** | **557** |
+
+| Lenguaje | Parte de los bytes |
+| --- | ---: |
+| TypeScript | 45 % |
+| HTML | 19 % |
+| Dart | 18 % |
+| JavaScript | 7,8 % |
+| Java | 5,2 % |
+| Otros | 4,3 % |
+
+| Día | Contribuciones |
+| --- | ---: |
+| lunes | 61 |
+| martes | 22 |
+| miércoles | 58 |
+| jueves | 45 |
+| viernes | 129 |
+| sábado | 111 |
+| domingo | 131 |
+
+Racha actual: 9 días seguidos, la más larga del año (2 oct – 10 oct).
+
+</details>
+<!-- estadisticas:fin -->
+
 <h3><img src="https://github.com/danieln3m0/danieln3m0/raw/output-origami/tira-trayectoria.svg" height="44" alt="経歴 · Trayectoria"></h3>
 
 | Qué | Dónde | Cuándo |

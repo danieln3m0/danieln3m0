@@ -44,6 +44,33 @@ export async function userRepos(user, token) {
     .map((r) => ({ full: r.full_name, name: r.name, branch: r.default_branch, created: r.created_at, fork: r.fork }))
 }
 
+// Bytes por lenguaje de un repo: { TypeScript: 12345, ... }
+export async function repoLanguages(full, token) {
+  return get(`/repos/${full}/languages`, token)
+}
+
+// Contribuciones del último año por tipo. Necesita token (GraphQL); sin él devuelve null.
+export async function contributionTotals(user, token) {
+  if (!token) return null
+  const query = `query($login:String!){user(login:$login){contributionsCollection{totalCommitContributions totalPullRequestContributions totalIssueContributions totalPullRequestReviewContributions totalRepositoryContributions restrictedContributionsCount}}}`
+  const res = await fetch(`${API}/graphql`, {
+    method: 'POST',
+    headers: headers(token, { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ query, variables: { login: user } }),
+  })
+  const json = await res.json()
+  if (!res.ok || json.errors) throw new Error(`GraphQL: ${JSON.stringify(json.errors ?? json).slice(0, 300)}`)
+  const c = json.data.user.contributionsCollection
+  return {
+    commits: c.totalCommitContributions,
+    pullRequests: c.totalPullRequestContributions,
+    issues: c.totalIssueContributions,
+    reviews: c.totalPullRequestReviewContributions,
+    repos: c.totalRepositoryContributions,
+    restricted: c.restrictedContributionsCount,
+  }
+}
+
 // Calendario de contribuciones del último año: [{ date, count }]
 export async function contributions(user, token) {
   if (token) {

@@ -1,14 +1,15 @@
 // Pliega el concepto origami: lee los repos y el calendario de GitHub y escribe
 // los SVG en ../dist-origami. Reutiliza la lectura de datos y la tipografía del herbario.
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import * as cfg from './config.mjs'
-import { contributions, repoInfo, repoTree, userRepos } from '../herbario/lib/github.mjs'
+import { contributionTotals, contributions, repoInfo, repoLanguages, repoTree, userRepos } from '../herbario/lib/github.mjs'
 import { countFiles, hierarchy, prune, seeded } from '../herbario/lib/plant.mjs'
 import { parseFont } from '../herbario/lib/type.mjs'
 import { footer, header, linkTag, notation, strip, tessellation, work } from './lib/render.mjs'
 import { capFlaps } from './lib/treemethod.mjs'
+import { languageShares, languages, rhythm, senbazuru, statsMarkdown, weekly } from './lib/stats.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const out = join(here, '..', 'dist-origami')
@@ -76,6 +77,38 @@ write('notacion.svg', notation({ fonts, example }))
 // Teselado de contribuciones.
 const days = await contributions(cfg.user, token)
 write('teselado.svg', tessellation({ fonts, days: days.slice(-371), date }).svg)
+
+// Estadísticas: contribuciones por tipo (mil grullas), lenguajes y ritmo semanal.
+const r = rhythm(days)
+const sb = senbazuru({ fonts, totals: await contributionTotals(cfg.user, token), total: r.total, date })
+write('senbazuru.svg', sb.svg)
+const own = repos.filter((x) => !x.fork && !cfg.skipRepos.includes(x.full))
+const bytes = {}
+for (const x of own) for (const [lang, b] of Object.entries(await repoLanguages(x.full, token))) bytes[lang] = (bytes[lang] ?? 0) + b
+write('lenguajes.svg', languages({ fonts, bytes, repoCount: own.length }))
+write('ritmo.svg', weekly({ fonts, rhythm: r }))
+
+// Los valores también van al README (texto alternativo y tabla de datos), entre marcadores.
+const readmePath = join(here, '..', 'README.md')
+const readme = readFileSync(readmePath, 'utf8')
+const START = '<!-- estadisticas:inicio -->'
+const END = '<!-- estadisticas:fin -->'
+if (readme.includes(START) && readme.includes(END)) {
+  const section = statsMarkdown({
+    base: 'https://github.com/danieln3m0/danieln3m0/raw/output-origami',
+    total: r.total,
+    per: sb.per,
+    strands: sb.strands,
+    langs: languageShares(bytes),
+    repoCount: own.length,
+    rhythm: r,
+  })
+  const next = `${readme.slice(0, readme.indexOf(START) + START.length)}\n${section}\n${readme.slice(readme.indexOf(END))}`
+  if (next !== readme) {
+    writeFileSync(readmePath, next)
+    console.log('  README.md  estadísticas actualizadas')
+  }
+}
 
 // Piezas fijas.
 for (const [id, s] of Object.entries(cfg.sections)) write(`tira-${id}.svg`, strip({ fonts, jp: s.jp, es: s.es }))

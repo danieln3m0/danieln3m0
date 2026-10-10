@@ -40,6 +40,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Los valores de las estadísticas viven también en el README (alt y tabla).
+      # Un push con GITHUB_TOKEN no vuelve a disparar el workflow.
+      - name: Actualizar los datos del README
+        run: |
+          if ! git diff --quiet README.md; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -q -m "Actualizar los datos de las estadísticas" README.md
+            git push -q
+          fi
+
       # Un commit huérfano por ejecución: la rama no acumula historia de imágenes.
       - name: Publicar en la rama output-origami
         working-directory: dist-origami

@@ -22,6 +22,21 @@ export const num = (n) => (n < 10000 ? String(n) : String(n).replace(/\B(?=(\d{3
 const responsive = (bp, extra = '') =>
   `.c{display:none}@media (max-width:${bp}px){.f{display:none}.c{display:inline}${extra}}`
 
+// El momento principal de la cabecera: la esquina se dobla, se traza la flecha de
+// doblez y los sellos se estampan. Con movimiento reducido solo aparecen.
+const FOLD_CSS =
+  '.cara{opacity:0;animation:cara .95s .35s both}' +
+  '.pliegue{animation:aparece .3s 1.2s both}' +
+  '.flecha{stroke-dasharray:1;animation:traza .55s cubic-bezier(.16,1,.3,1) 1.25s both}' +
+  '.punta{animation:aparece .2s 1.7s both}' +
+  '.sello{transform-box:fill-box;transform-origin:center;animation:sello .42s cubic-bezier(.16,1,.3,1) both}' +
+  '@keyframes cara{0%,50%{opacity:1}51%,100%{opacity:0}}' +
+  '@keyframes aparece{from{opacity:0}}' +
+  '@keyframes traza{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}' +
+  // El sello está visible desde el primer fotograma: solo se presiona, nunca aparece de la nada.
+  '@keyframes sello{from{transform:scale(1.25)}}' +
+  '@media (prefers-reduced-motion:reduce){.cara,.pliegue,.flecha,.punta,.sello{animation:none}}'
+
 // Pliegues más gruesos cuando la pieza se ve pequeña (móvil).
 const COMPACT_CP = '.cv{stroke-width:3px}.cm{stroke-width:2.6px}.cb{stroke-width:2px}.ch{display:none}'
 
@@ -120,7 +135,7 @@ const sealCols = (jp) => {
 
 const CORNERS = ['tr', 'br', 'bl', 'tl']
 
-function sheet({ x, y, S, rotate, corner = 'tr', fold = 110, id, inner, pattern = 'asaW' }) {
+function sheet({ x, y, S, rotate, corner = 'tr', fold = 110, id, inner, pattern = 'asaW', animate = false }) {
   // Pentágono de la hoja sin la esquina doblada, y la solapa reflejada sobre la hoja.
   const f = fold
   const shapes = {
@@ -138,13 +153,23 @@ function sheet({ x, y, S, rotate, corner = 'tr', fold = 110, id, inner, pattern 
   const ctrl = { x: mid.x + (from.x - to.x) * 0.15 + (from.y - to.y) * 0.55, y: mid.y + (from.y - to.y) * 0.15 - (from.x - to.x) * 0.55 }
   const ang = Math.atan2(to.y - ctrl.y, to.x - ctrl.x)
   const head = (s) => `M${f1(to.x - Math.cos(ang - 0.45) * s)} ${f1(to.y - Math.sin(ang - 0.45) * s)}L${f1(to.x)} ${f1(to.y)}L${f1(to.x - Math.cos(ang + 0.45) * s)} ${f1(to.y - Math.sin(ang + 0.45) * s)}`
-  return `<g transform="translate(${x} ${y}) rotate(${rotate} ${S / 2} ${S / 2})">
+  // Doblez animado: la solapa empieza desplegada (reflejada sobre la línea de pliegue,
+  // con la cara washi arriba) y se pliega en valle hasta su sitio. Reflejar es escalar
+  // −1 en el eje perpendicular a la línea, así que el giro pasa por 0 como un pliegue real.
+  const phi = (Math.atan2(fb[1] - fa[1], fb[0] - fa[0]) * 180) / Math.PI
+  const T = (sy) => `translate(${f1(fa[0])}px,${f1(fa[1])}px) rotate(${f1(phi)}deg) scaleY(${sy}) rotate(${f1(-phi)}deg) translate(${f1(-fa[0])}px,${f1(-fa[1])}px)`
+  const foldCss = animate
+    ? `<style>.pl-${id}{animation:pl-${id} .95s cubic-bezier(.65,0,.35,1) .35s both}@keyframes pl-${id}{from{transform:${T(-1)}}to{transform:${T(1)}}}@media (prefers-reduced-motion:reduce){.pl-${id}{animation:none}}</style>`
+    : ''
+  const flapClass = animate ? ` class="pl-${id}"` : ''
+  const washiFace = animate ? `<polygon class="cara" points="${pts(shapes.flap)}" fill="${C.washi}"/>` : ''
+  return `<g transform="translate(${x} ${y}) rotate(${rotate} ${S / 2} ${S / 2})">${foldCss}
 <clipPath id="${id}"><polygon points="${pts(shapes.poly)}"/></clipPath>
 <polygon points="${pts(shapes.poly)}" fill="${C.washi}" filter="url(#asiento)"/>
 <g clip-path="url(#${id})">${inner}</g>
-<g filter="url(#sombra)"><polygon points="${pts(shapes.flap)}" fill="${C.ai}"/><polygon points="${pts(shapes.flap)}" fill="url(#${pattern})"/></g>
-<path class="f" d="M${f1(fa[0])} ${f1(fa[1])}L${f1(fb[0])} ${f1(fb[1])}" stroke="${C.washi}" stroke-width="1.2" stroke-dasharray="7 4"/>
-<g class="f" fill="none" stroke="${C.washi}" stroke-width="2.2" stroke-linecap="round"><path d="M${f1(from.x)} ${f1(from.y)}Q${f1(ctrl.x)} ${f1(ctrl.y)} ${f1(to.x)} ${f1(to.y)}"/><path d="${head(12)}"/></g>
+<g${flapClass} filter="url(#sombra)"><polygon points="${pts(shapes.flap)}" fill="${C.ai}"/><polygon points="${pts(shapes.flap)}" fill="url(#${pattern})"/>${washiFace}</g>
+<path class="f${animate ? ' pliegue' : ''}" d="M${f1(fa[0])} ${f1(fa[1])}L${f1(fb[0])} ${f1(fb[1])}" stroke="${C.washi}" stroke-width="1.2" stroke-dasharray="7 4"/>
+<g class="f" fill="none" stroke="${C.washi}" stroke-width="2.2" stroke-linecap="round"><path${animate ? ' class="flecha" pathLength="1"' : ''} d="M${f1(from.x)} ${f1(from.y)}Q${f1(ctrl.x)} ${f1(ctrl.y)} ${f1(to.x)} ${f1(to.y)}"/><path${animate ? ' class="punta"' : ''} d="${head(12)}"/></g>
 </g>`
 }
 
@@ -256,9 +281,9 @@ export function header({ fonts, tree, owner, award, date, tags = {} }) {
     .join('')
   const kAward = award.compact.map((l, i) => ts.text(l, { font: 'black', size: 30, x: W - 166, y: H - 112 + i * 38, anchor: 'end', fill: C.washi }).svg).join('')
   const body = `${field(W, H)}
-${sheet({ x: 36, y: 46, S, rotate: -2, corner: 'tr', fold: 118, id: 'hoja', inner: drawCP(cp, S) + bandTags + nameSeal.svg })}
-<g class="f">${n1.svg}${n2.svg}${lines}${seal.svg}${awardText}${legend.join('')}${plegado.svg}</g>
-<g class="c">${kName}${kLines}${kAward}</g>${kSeal.svg}`
+${sheet({ x: 36, y: 46, S, rotate: -2, corner: 'tr', fold: 118, id: 'hoja', inner: drawCP(cp, S) + bandTags + `<g class="sello" style="animation-delay:1.5s">${nameSeal.svg}</g>`, animate: true })}
+<g class="f">${n1.svg}${n2.svg}${lines}<g class="sello" style="animation-delay:1.75s">${seal.svg}</g>${awardText}${legend.join('')}${plegado.svg}</g>
+<g class="c">${kName}${kLines}${kAward}</g><g class="sello" style="animation-delay:1.6s">${kSeal.svg}</g>`
 
   return doc({
     w: W,
@@ -266,7 +291,7 @@ ${sheet({ x: 36, y: 46, S, rotate: -2, corner: 'tr', fold: 118, id: 'hoja', inne
     title: 'Francis Daniel Mamani Silva: el patrón de pliegue de su cuenta de GitHub, donde cada círculo es un archivo y cada banda un repositorio',
     body,
     ts,
-    css: responsive(600, COMPACT_CP),
+    css: FOLD_CSS + responsive(600, COMPACT_CP),
     defs: PATTERNS(),
   })
 }
@@ -408,6 +433,17 @@ export function notation({ fonts, example }) {
 // ---------------------------------------------------------------------------
 // Teselado: una torsión cuadrada por semana; más contribuciones, más torsión.
 
+// Cada torsión parte plana y gira hasta su ángulo (que es el dato): así se lee que
+// más giro es más contribuciones. Con movimiento reducido, solo un fundido.
+const TWIST_CSS =
+  '.tw{transform-box:fill-box;transform-origin:center;animation:tw .7s cubic-bezier(.16,1,.3,1) both}' +
+  '.fc{animation:fc .7s ease-out both}' +
+  // El primer fotograma ya muestra un 40 % del giro y las facetas a media tinta: si un
+  // visor congela ese instante, el orden de las semanas sigue siendo legible.
+  '@keyframes tw{from{transform:rotate(calc(var(--a) * .6))}}' +
+  '@keyframes fc{from{opacity:.45}}' +
+  '@media (prefers-reduced-motion:reduce){.tw,.fc{animation:none}}'
+
 const MONTHS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 
 export function tessellation({ fonts, days, date }) {
@@ -469,12 +505,14 @@ export function tessellation({ fonts, days, date }) {
     const o = [[-a, -a], [a, -a], [a, a], [-a, a]].map(([x, y]) => ({ x: cx + x, y: cy + y }))
     const qd = [[-b, -b], [b, -b], [b, b], [-b, b]].map(([x, y]) => ({ x: cx + x * Math.cos(th) - y * Math.sin(th), y: cy + x * Math.sin(th) + y * Math.cos(th) }))
     const depth = 0.3 + 0.6 * (deg / 42)
+    // Las torsiones se pliegan en orden de semana; el retraso total queda acotado.
+    const delay = (0.15 + i * 0.016).toFixed(2)
     const shade = [1, 0.45, 0.85, 0.3].map((k) => k * depth)
     for (let k = 0; k < 4; k++) {
       const poly = [o[k], o[(k + 1) % 4], qd[(k + 1) % 4], qd[k]].map((p) => `${f1(p.x)},${f1(p.y)}`).join(' ')
-      parts.push(`<polygon points="${poly}" fill="${C.ai}" fill-opacity="${shade[k].toFixed(2)}" stroke="${ink}" stroke-width=".8"/>`)
+      parts.push(`<polygon class="fc" style="animation-delay:${delay}s" points="${poly}" fill="${C.ai}" fill-opacity="${shade[k].toFixed(2)}" stroke="${ink}" stroke-width=".8"/>`)
     }
-    parts.push(`<polygon points="${qd.map((p) => `${f1(p.x)},${f1(p.y)}`).join(' ')}" fill="${C.washi}" stroke="${ink}" stroke-width="1.1"/>`)
+    parts.push(`<polygon class="tw" style="--a:${f1(-deg)}deg;animation-delay:${delay}s" points="${qd.map((p) => `${f1(p.x)},${f1(p.y)}`).join(' ')}" fill="${C.washi}" stroke="${ink}" stroke-width="1.1"/>`)
   })
 
   // Rótulos de fila: el trimestre que cubre cada fila.
@@ -500,7 +538,7 @@ export function tessellation({ fonts, days, date }) {
   parts.push(`<g class="c">${ts.text('Una torsión por semana', { font: 'black', size: 34, x: 40, y: 56, fill: ink }).svg}${ts.text(short, { font: 'black', size: ts.fit(short, { font: 'black', size: 34, maxWidth: W - 80 }), x: 40, y: H - 22, fill: ink }).svg}</g>`)
 
   return {
-    svg: doc({ w: W, h: H, title: `Teselado de contribuciones: ${note}`, body: parts.join(''), ts, css: responsive(600) }),
+    svg: doc({ w: W, h: H, title: `Teselado de contribuciones: ${note}`, body: parts.join(''), ts, css: TWIST_CSS + responsive(600) }),
     total,
   }
 }
@@ -561,3 +599,5 @@ export function footer({ fonts, owner, date }) {
   const body = `${field(W, H, 8)}${seal.svg}<g class="f">${a.svg}${b.svg}${b2.svg}</g><g class="c">${ka.svg}${kb.svg}</g>`
   return doc({ w: W, h: H, title: `Plegado automáticamente cada 12 horas. Última pasada: ${date}`, body, ts, css: responsive(450), defs: PATTERNS })
 }
+
+export { doc, field, responsive, PATTERNS, f1, sealCols }

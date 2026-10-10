@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T08:35:25.781Z",
+  "generatedAt": "2026-10-10T12:00:00.000Z",
   "title": "Design System: Patrones de pliegue",
   "extensions": {
     "colorMeta": {
@@ -17,7 +17,11 @@
           "#7088AD",
           "#A6B6CF",
           "#DCE3EE"
-        ]
+        ],
+        "mutedOpacity": {
+          "value": 0.62,
+          "purpose": "Chart de-emphasis on washi (Otros segment, non-peak tanzaku). An opacity of Ai Indigo, not a palette color."
+        }
       },
       "ai-deep": {
         "role": "primary",
@@ -101,7 +105,7 @@
     "shadows": [
       {
         "name": "contact",
-        "value": "feDropShadow dx=0 dy=6 stdDeviation=7 flood-color=#0B1830 flood-opacity=.45",
+        "value": "feDropShadow dx=0 dy=6 stdDeviation=7 flood-color=#142A47 flood-opacity=.6",
         "purpose": "Soft contact shadow under every tilted washi sheet."
       },
       {
@@ -127,7 +131,43 @@
         "purpose": "Curved Yoshizawa valley-fold arrow on every folded corner."
       }
     ],
-    "motion": [],
+    "motion": [
+      {
+        "name": "fold-ease",
+        "value": "cubic-bezier(.65,0,.35,1)",
+        "purpose": "Header corner valley-fold: scaleY -1 to 1 across the fold line, .95s, delay .35s; face swaps washi to chiyogami at 50%."
+      },
+      {
+        "name": "settle-ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Arrow draw, seal press and twist settle."
+      },
+      {
+        "name": "fold-line",
+        "value": "opacity 0 to 1, .3s, delay 1.2s",
+        "purpose": "Fold line fades in after the flap lands."
+      },
+      {
+        "name": "arrow-draw",
+        "value": "stroke-dashoffset 1 to 0 (pathLength 1), .55s settle-ease, delay 1.25s; head fades .2s at 1.7s",
+        "purpose": "Yoshizawa valley arrow draws once."
+      },
+      {
+        "name": "seal-press",
+        "value": "scale 1.25 to 1, .42s settle-ease, delays 1.5-1.75s",
+        "purpose": "Hanko visible from the first frame; they only press."
+      },
+      {
+        "name": "twist-settle",
+        "value": "rotate from 40% of final angle (calc(var(--a)*.6) offset), facets from .45 opacity, .7s settle-ease, stagger 16ms per week from .15s",
+        "purpose": "Tessellation twists settle to their data angle; the only supporting motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation: none",
+        "purpose": "prefers-reduced-motion shows the final state."
+      }
+    ],
     "breakpoints": [
       {
         "name": "work-compact",
@@ -142,7 +182,7 @@
       {
         "name": "panel-compact",
         "value": "600px",
-        "purpose": "Header, notation and tessellation compact composition."
+        "purpose": "Header, notation, tessellation and statistics (senbazuru, languages, weekly) compact composition."
       }
     ]
   },
@@ -194,18 +234,44 @@
       "description": "Valley and mountain lines with paired Japanese and Spanish labels.",
       "html": "<div class=\"ds-legend\"><div><svg width=\"44\" height=\"6\"><path d=\"M0 3h44\" stroke=\"#142A47\" stroke-width=\"2\" stroke-dasharray=\"7 4\"/></svg> 谷折り · valle</div><div><svg width=\"44\" height=\"6\"><path d=\"M0 3h44\" stroke=\"#142A47\" stroke-width=\"2\" stroke-dasharray=\"9 3 1.6 3 1.6 3\"/></svg> 山折り · monte</div></div>",
       "css": ".ds-legend{background:#F5F4EF;color:#142A47;border:2px solid #142A47;padding:16px 20px;font:500 14px/1.9 \"Zen Kaku Gothic New\",sans-serif}.ds-legend svg{vertical-align:middle;margin-right:10px}"
+    },
+    {
+      "name": "Senbazuru Strand",
+      "kind": "card",
+      "refersTo": "senbazuru",
+      "description": "Contributions as cranes on a strand from a washi rod; each crane = N, a remainder under 20% is an unfolded paper square; label hung under the tassel.",
+      "html": "<div class=\"ds-sbz\"><div class=\"ds-sbz-rod\"></div><div class=\"ds-sbz-strand\"><svg width=\"44\" height=\"28\" viewBox=\"0 0 40 24\"><g fill=\"#F5F4EF\" stroke=\"#142A47\" stroke-width=\".6\" stroke-linejoin=\"round\"><polygon points=\"28,16 39,4 40,5 30,16.5\"/><polygon points=\"12,16 3,5 4.5,4.6 15,15.5\"/><polygon points=\"3,5 0,8.5 4.4,6.2\"/><polygon points=\"12,16 20,13 29,16 21,21\"/><polygon points=\"14,16 27,16 23,0\" fill=\"#2B4A73\" stroke=\"#F5F4EF\"/></g></svg><svg width=\"44\" height=\"28\" viewBox=\"0 0 40 24\"><g fill=\"#F5F4EF\" stroke=\"#142A47\" stroke-width=\".6\" stroke-linejoin=\"round\"><polygon points=\"28,16 39,4 40,5 30,16.5\"/><polygon points=\"12,16 3,5 4.5,4.6 15,15.5\"/><polygon points=\"3,5 0,8.5 4.4,6.2\"/><polygon points=\"12,16 20,13 29,16 21,21\"/><polygon points=\"14,16 27,16 23,0\" fill=\"#2B4A73\" stroke=\"#F5F4EF\"/></g></svg><span class=\"ds-sbz-sq\"></span><span class=\"ds-sbz-lab\">commits<br>348</span></div><p class=\"ds-sbz-key\">cada grulla = 50 contribuciones</p></div>",
+      "css": ".ds-sbz{background:#1E3A5F;border-radius:8px;padding:20px 24px;width:200px;color:#F5F4EF;font:500 13px \"Zen Kaku Gothic New\",sans-serif}.ds-sbz-rod{height:4px;border-radius:2px;background:#F5F4EF}.ds-sbz-strand{display:flex;flex-direction:column;align-items:center;gap:4px;border-left:0;background:linear-gradient(#F5F4EF,#F5F4EF) center/1px 100% no-repeat;padding-top:8px;width:60px}.ds-sbz-sq{width:10px;height:10px;background:#F5F4EF;border:.6px solid #142A47;transform:rotate(45deg)}.ds-sbz-lab{background:#1E3A5F;text-align:center;font-weight:900;padding-top:8px}.ds-sbz-key{margin:12px 0 0}"
+    },
+    {
+      "name": "Language Strip",
+      "kind": "custom",
+      "refersTo": "language-segment",
+      "description": "100% stacked bar of indigo kami segments cut 4 apart on a washi panel; Otros (<5%) at Ai Indigo 0.62.",
+      "html": "<div class=\"ds-lang\"><div class=\"ds-lang-bar\"><span style=\"flex:45\">TypeScript<br>45 %</span><span style=\"flex:19\">HTML<br>19 %</span><span style=\"flex:18\">Dart<br>18 %</span><span style=\"flex:8\"></span><span style=\"flex:5\"></span><span class=\"ds-lang-otros\" style=\"flex:4\"></span></div></div>",
+      "css": ".ds-lang{background:#F5F4EF;border:2px solid #142A47;padding:24px 20px}.ds-lang-bar{display:flex;gap:4px;height:62px}.ds-lang-bar span{background:#1E3A5F;color:#F5F4EF;font:900 13px/1.4 \"Zen Kaku Gothic New\",sans-serif;padding:8px;overflow:hidden;white-space:nowrap}.ds-lang-bar .ds-lang-otros{background:rgba(30,58,95,.62)}"
+    },
+    {
+      "name": "Tanzaku",
+      "kind": "custom",
+      "refersTo": "tanzaku",
+      "description": "Weekday strips with two-peak cut tops hung from a rod; peak days (within 5%) full indigo, the rest Ai Indigo at 0.62.",
+      "html": "<div class=\"ds-tz\"><div class=\"ds-tz-rod\"></div><div class=\"ds-tz-row\"><div><b>vie</b><i style=\"height:98px\"></i><b>129</b></div><div><b>sáb</b><i class=\"ds-tz-mute\" style=\"height:84px\"></i><span>111</span></div><div><b>dom</b><i style=\"height:100px\"></i><b>131</b></div></div></div>",
+      "css": ".ds-tz{background:#F5F4EF;border:2px solid #142A47;padding:16px 24px;color:#142A47;font:500 13px \"Zen Kaku Gothic New\",sans-serif;width:240px}.ds-tz-rod{height:3px;border-radius:2px;background:#142A47;margin-top:22px}.ds-tz-row{display:flex;gap:18px;justify-content:center;margin-top:-28px}.ds-tz-row div{display:flex;flex-direction:column;align-items:center;gap:6px}.ds-tz-row b{font-weight:900}.ds-tz-row i{display:block;width:46px;background:#1E3A5F;margin-top:12px;clip-path:polygon(0 4px,50% 0,100% 4px,100% 100%,0 100%)}.ds-tz-row .ds-tz-mute{background:rgba(30,58,95,.62)}"
     }
   ],
   "narrative": {
     "northStar": "The Two-Sided Kami",
-    "overview": "The profile is a folder of origami crease patterns (展開図). Every piece is cut from one sheet of two-sided kami: the indigo colored face is the field, carrying a tone-on-tone asanoha, and the washi reverse is the drawing surface where creases are printed in indigo ink. Each repository is designed as a model with the tree method (every file a flap circle, every folder a river band, gaps filled with rabbit-ear molecules) and printed in Yoshizawa–Randlett notation. The patterns regenerate from live repo trees on every Action run, so the drawings are folded from data, not illustrated.\n\nThe palette is paper, not pigment: two faces of the same sheet plus one seal ink. Vermilion appears only as hanko pressed in hakubun. Sheets sit tilted on the field with a folded corner that reveals a chiyogami face and a curved valley-fold arrow, so every work reads as a physical object about to be folded. Density is that of a real diagram: a dense crease pattern, a short caption, a single meta line that states what was drawn. Every Japanese label travels with its Spanish translation; Japanese is the notation, Spanish is the reading.\n\nConfirmed refusals: the badge wall and stat cards, and the generic \"Japanese\" costume (cherry blossoms, rising-sun rays, red disc motifs).",
+    "overview": "The profile is a folder of origami crease patterns (展開図). Every piece is cut from one sheet of two-sided kami: the indigo colored face is the field, carrying a tone-on-tone asanoha, and the washi reverse is the drawing surface where creases are printed in indigo ink. Each repository is designed as a model with the tree method (every file a flap circle, every folder a river band, gaps filled with rabbit-ear molecules) and printed in Yoshizawa–Randlett notation. The patterns regenerate from live repo trees on every Action run, so the drawings are folded from data, not illustrated.\n\nThe palette is paper, not pigment: two faces of the same sheet plus one seal ink. Vermilion appears only as hanko pressed in hakubun. Sheets sit tilted on the field with a folded corner that reveals a chiyogami face and a curved valley-fold arrow, so every work reads as a physical object about to be folded. Density is that of a real diagram: a dense crease pattern, a short caption, a single meta line that states what was drawn. Every Japanese label travels with its Spanish translation; Japanese is the notation, Spanish is the reading.\n\nStatistics are paper objects too: contributions hang as strands of folded cranes (千羽鶴), languages are a strip of indigo kami cut into segments, weekdays are tanzaku hung from a rod. Motion is a single fold: the header corner valley-folds into place once, the tessellation twists settle to their data angle, and every first frame is already a truthful, complete state.\n\nConfirmed refusals: the badge wall and stat cards (including a stat-card column), and the generic \"Japanese\" costume (cherry blossoms, rising-sun rays, red disc motifs).",
     "keyCharacteristics": [
       "Opaque objects only; one SVG serves GitHub's light and dark themes.",
       "Indigo field, washi drawing surface, indigo crease ink, vermilion only for hanko.",
       "Yoshizawa–Randlett notation used identically everywhere: valley dashed, mountain dash-dot-dot.",
       "Tilted sheets with folded corners, valley-fold arrows and a soft contact shadow.",
       "All text outlined to paths at build time; every large piece ships full and compact compositions.",
-      "Every Japanese label paired with Spanish, in full and compact compositions alike."
+      "Every Japanese label paired with Spanish, in full and compact compositions alike.",
+      "Statistics drawn as paper (cranes, cut kami strip, tanzaku), every value direct-labeled, with a table view in the README.",
+      "One focal motion (the header fold), no loops, and a truthful first frame; reduced motion shows the final state."
     ],
     "rules": [
       {
@@ -216,6 +282,11 @@
       {
         "name": "The Seal Only Rule",
         "body": "Vermilion exists only as a hanko block in hakubun. If something red is not a seal, it is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Muted Ink Rule",
+        "body": "De-emphasis in charts is Ai Indigo at fill-opacity 0.62 on washi (the «Otros» segment, non-peak tanzaku), never a new hex. Emphasis is the full ink.",
         "section": "colors"
       },
       {
@@ -234,6 +305,11 @@
         "section": "typography"
       },
       {
+        "name": "The Compact Pair Rule",
+        "body": "Compact titles keep the Japanese · Spanish pairing with the middle dot: kanji around 40-46, Spanish around 30-34 (`言語 · Lenguajes`, `週 · Ritmo semanal`).",
+        "section": "typography"
+      },
+      {
         "name": "The Name Is The Headline Rule",
         "body": "Nothing sits above a name or a work title; context lives in the legend, the caption below or the meta line.",
         "section": "typography"
@@ -242,6 +318,16 @@
         "name": "The Paper Light Rule",
         "body": "Shadows are soft and belong to paper resting or folded: the contact shadow under a sheet and the flap shadow under a folded corner. Never a hard offset shadow, never a shadow on panels, tabs or strips.",
         "section": "elevation"
+      },
+      {
+        "name": "The One Fold Rule",
+        "body": "One focal moment per README: the header corner fold with its arrow and seal press. The tessellation twist settle is the only supporting motion. No loops; statistics pieces and work cards carry no motion.",
+        "section": "components"
+      },
+      {
+        "name": "The Truthful First Frame Rule",
+        "body": "The first frame is already a complete, truthful state: seals are present and only press, twists already show 40% of their angle and their order. `prefers-reduced-motion` sets `animation: none`, which shows the final state.",
+        "section": "components"
       }
     ],
     "dos": [
@@ -251,7 +337,10 @@
       "**Do** give each tilted sheet a folded corner with a curved valley-fold arrow and the soft contact shadow, rotating chiyogami asanoha, seigaiha, kikkō.",
       "**Do** cap crease patterns at 30 flaps and state the drawn count in the meta line.",
       "**Do** ship a full and a compact composition inside each large SVG (330 / 450 / 600).",
-      "**Do** convert all text to outlines and shrink over-long strings to fit."
+      "**Do** convert all text to outlines and shrink over-long strings to fit.",
+      "**Do** keep one focal motion (the header fold) whose first frame is already a truthful, complete state, and let reduced motion show the final state.",
+      "**Do** direct-label every chart value and carry the README alt text and `<details>` table view of the same data.",
+      "**Do** mute chart series with Ai Indigo at fill-opacity 0.62 on washi."
     ],
     "donts": [
       "**Don't** use vermilion for anything but hanko seals.",
@@ -260,7 +349,9 @@
       "**Don't** switch assets per theme with `<picture>`; each object carries its own ground.",
       "**Don't** use live `<text>` or web fonts inside the SVGs.",
       "**Don't** add hard offset shadows or shadows on flat pieces (panels, tabs, strips).",
-      "**Don't** introduce a new hue for hierarchy; vary the one ink's weight and opacity."
+      "**Don't** introduce a new hue for hierarchy; vary the one ink's weight and opacity.",
+      "**Don't** loop animations, animate statistics or work cards, or start any piece from an empty or false frame.",
+      "**Don't** rely on tooltips, color-only keys or a stat-card column for chart values."
     ]
   }
 }
