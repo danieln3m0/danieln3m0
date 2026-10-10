@@ -20,8 +20,10 @@ const res = await fetch('https://api.github.com/markdown', {
   body: JSON.stringify({ text: readFileSync(join(root, 'README.md'), 'utf8'), mode: 'gfm', context: 'danieln3m0/danieln3m0' }),
 })
 if (!res.ok) throw new Error(`Markdown API ${res.status}: ${await res.text()}`)
-const dist = pathToFileURL(join(root, 'dist')).href
-let html = (await res.text()).replaceAll('https://github.com/danieln3m0/danieln3m0/raw/output', dist)
+// Las imágenes del herbario viven en la rama output y las del concepto origami en output-origami.
+let html = (await res.text())
+  .replaceAll('https://github.com/danieln3m0/danieln3m0/raw/output-origami', pathToFileURL(join(root, 'dist-origami')).href)
+  .replaceAll('https://github.com/danieln3m0/danieln3m0/raw/output', pathToFileURL(join(root, 'dist')).href)
 html = html.replace(/src="https:\/\/camo\.githubusercontent\.com\/[^"]+"([^>]*?)data-canonical-src="([^"]+)"/g, 'src="$2"$1')
 
 const page = (theme) => `<!doctype html>

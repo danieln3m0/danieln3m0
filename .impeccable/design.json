@@ -1,110 +1,138 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T07:50:40.560Z",
-  "title": "Design System: Herbario de repositorios",
+  "generatedAt": "2026-10-10T08:35:25.781Z",
+  "title": "Design System: Patrones de pliegue",
   "extensions": {
     "colorMeta": {
-      "folder-vermilion": {
+      "ai-indigo": {
         "role": "primary",
-        "displayName": "Folder Vermilion",
-        "canonical": "#B42318",
+        "displayName": "Ai Indigo",
+        "canonical": "#1E3A5F",
         "tonalRamp": [
-          "#3A0905",
-          "#5E120B",
-          "#8E1A12",
-          "#B42318",
-          "#D2483A",
-          "#E57D72",
-          "#F2B2AA",
-          "#FBE3E0"
+          "#0A1626",
+          "#142A47",
+          "#1E3A5F",
+          "#2B4A73",
+          "#46658F",
+          "#7088AD",
+          "#A6B6CF",
+          "#DCE3EE"
         ]
       },
-      "folder-tab-deep": {
+      "ai-deep": {
         "role": "primary",
-        "displayName": "Folder Tab Deep",
-        "canonical": "#8E1A12",
+        "displayName": "Ai Deep (crease ink)",
+        "canonical": "#142A47",
         "tonalRamp": [
-          "#2E0704",
-          "#4D0F09",
-          "#6E150E",
-          "#8E1A12",
-          "#B0352B",
-          "#CF6B61",
-          "#E8A69F",
-          "#F8DFDC"
+          "#08121F",
+          "#0E1E33",
+          "#142A47",
+          "#22395B",
+          "#3E5677",
+          "#687E9C",
+          "#A0AFC4",
+          "#DAE0E9"
         ]
       },
-      "mounting-sheet": {
-        "role": "neutral",
-        "displayName": "Mounting Sheet",
-        "canonical": "#EDF0EA",
+      "ai-tone": {
+        "role": "primary",
+        "displayName": "Ai Tone (asanoha)",
+        "canonical": "#2B4A73",
         "tonalRamp": [
-          "#1F231E",
-          "#3A403A",
-          "#596158",
-          "#7C857A",
-          "#A1AA9F",
-          "#C6CEC3",
-          "#EDF0EA",
-          "#F8FAF6"
+          "#0D1829",
+          "#18294A",
+          "#223B60",
+          "#2B4A73",
+          "#4A6891",
+          "#7690B2",
+          "#AABBD2",
+          "#DEE5EF"
         ]
       },
-      "specimen-ink": {
-        "role": "neutral",
-        "displayName": "Specimen Ink",
-        "canonical": "#14261C",
+      "shu-vermilion": {
+        "role": "tertiary",
+        "displayName": "Shu Vermilion (hanko)",
+        "canonical": "#C8371F",
         "tonalRamp": [
-          "#14261C",
-          "#24402F",
-          "#365C45",
-          "#4B795D",
-          "#689779",
-          "#8EB59C",
-          "#B8D3C1",
-          "#E3EFE6"
+          "#3D0E07",
+          "#66170C",
+          "#952313",
+          "#C8371F",
+          "#DD5F48",
+          "#EB8F7E",
+          "#F5BFB4",
+          "#FCE8E4"
+        ]
+      },
+      "washi": {
+        "role": "neutral",
+        "displayName": "Washi",
+        "canonical": "#F5F4EF",
+        "tonalRamp": [
+          "#26251F",
+          "#45443D",
+          "#67665E",
+          "#8B8A82",
+          "#B1B0A8",
+          "#D6D5CE",
+          "#F5F4EF",
+          "#FBFAF7"
         ]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Display (Libre Franklin 800)",
-        "purpose": "Names on determination labels and link-tag labels; the largest type in any piece."
+        "displayName": "Display (Zen Kaku Gothic New 900)",
+        "purpose": "Owner name and work titles; the largest type in any piece."
       },
-      "caps": {
-        "displayName": "Institution Caps (Libre Franklin 600)",
-        "purpose": "Folder tabs, panel titles, month marks, leaf-key labels, stamp arc text."
+      "label": {
+        "displayName": "Label (Zen Kaku Gothic New 900)",
+        "purpose": "Meta lines, legend and panel titles, band tags, link tabs, Spanish half of strips, compact captions."
       },
-      "typed": {
-        "displayName": "Collector Data (Courier Prime 400)",
-        "purpose": "Descriptions, collector lines, origin slips, barcode captions, footer."
+      "body": {
+        "displayName": "Body (Zen Kaku Gothic New 500)",
+        "purpose": "Roles, descriptions, legend rows, seal translations, footer notes."
       },
-      "typed-bold": {
-        "displayName": "Collector Data Bold (Courier Prime 700)",
-        "purpose": "Label meta line and header branch tags."
-      },
-      "binomial": {
-        "displayName": "Binomial (Libre Caslon Text Italic)",
-        "purpose": "Invented Latin name under each display name."
+      "seal": {
+        "displayName": "Seal (Shippori Mincho B1 800)",
+        "purpose": "Hanko characters in vertical columns and the kanji of kirigami strips."
       }
     },
-    "shadows": [],
-    "motion": [
+    "shadows": [
       {
-        "name": "stem-draw",
-        "value": "stroke-dashoffset 1 -> 0, 1.2s cubic-bezier(.22,1,.36,1), staggered by growth order",
-        "purpose": "One-time header stem draw; disabled under prefers-reduced-motion."
+        "name": "contact",
+        "value": "feDropShadow dx=0 dy=6 stdDeviation=7 flood-color=#0B1830 flood-opacity=.45",
+        "purpose": "Soft contact shadow under every tilted washi sheet."
       },
       {
-        "name": "leaf-appear",
-        "value": "opacity 0 -> 1, 0.7s cubic-bezier(.22,1,.36,1), 0.35s after its stem point",
-        "purpose": "Header leaves only; disabled under prefers-reduced-motion."
+        "name": "flap",
+        "value": "feDropShadow dx=-2 dy=3 stdDeviation=3 flood-color=#142A47 flood-opacity=.35",
+        "purpose": "Under the folded corner flap only."
       }
     ],
+    "notation": [
+      {
+        "name": "valley",
+        "value": "stroke-dasharray 7 4",
+        "purpose": "Valley folds everywhere: patterns, legend, notation, tessellation, preliminary base."
+      },
+      {
+        "name": "mountain",
+        "value": "stroke-dasharray 9 3 1.6 3 1.6 3",
+        "purpose": "Mountain folds everywhere."
+      },
+      {
+        "name": "valley-arrow",
+        "value": "quadratic arc, washi 2.2 stroke, round caps, open head",
+        "purpose": "Curved Yoshizawa valley-fold arrow on every folded corner."
+      }
+    ],
+    "motion": [],
     "breakpoints": [
       {
-        "name": "specimen-compact",
+        "name": "work-compact",
         "value": "330px",
-        "purpose": "Rendered image width below which specimens use the compact composition."
+        "purpose": "Rendered image width below which works use the compact composition."
       },
       {
         "name": "footer-compact",
@@ -114,85 +142,85 @@
       {
         "name": "panel-compact",
         "value": "600px",
-        "purpose": "Header, phenology and leaf key compact composition."
+        "purpose": "Header, notation and tessellation compact composition."
       }
     ]
   },
   "components": [
     {
-      "name": "Folder with Sheet",
+      "name": "Kami Sheet",
       "kind": "card",
-      "refersTo": "folder",
-      "description": "Vermilion type folder with deep-red back tab holding a cool paper sheet.",
-      "html": "<div class=\"ds-folder\"><span class=\"ds-folder-tab\">TYPESCRIPT</span><div class=\"ds-folder-body\"><div class=\"ds-sheet\"></div></div></div>",
-      "css": ".ds-folder{width:280px}.ds-folder-tab{display:inline-block;margin-left:10px;background:#8E1A12;color:#EDF0EA;font:600 11px/1 \"Libre Franklin\",sans-serif;letter-spacing:.14em;padding:8px 14px 10px;border-radius:14px 14px 0 0}.ds-folder-body{background:#B42318;border-radius:8px;padding:8px;margin-top:-4px}.ds-sheet{background:#EDF0EA;border-radius:2px;height:200px}"
+      "refersTo": "kami-sheet",
+      "description": "Tilted washi sheet with crease pattern, folded indigo corner and valley-fold arrow on the indigo field.",
+      "html": "<div class=\"ds-field\"><div class=\"ds-sheet\"><svg viewBox=\"0 0 200 200\" width=\"100%\" height=\"100%\"><path d=\"M0 0L200 200M200 0L0 200\" stroke=\"#142A47\" stroke-width=\"1.7\" stroke-dasharray=\"7 4\"/><path d=\"M100 0V200M0 100H200\" stroke=\"#142A47\" stroke-width=\"1.2\" stroke-dasharray=\"9 3 1.6 3 1.6 3\"/><polygon points=\"140,0 200,60 140,60\" fill=\"#1E3A5F\"/><path d=\"M140 0L200 60\" stroke=\"#F5F4EF\" stroke-width=\"1.2\" stroke-dasharray=\"6 4\"/><path d=\"M200 0Q186 46 144 56\" fill=\"none\" stroke=\"#F5F4EF\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><path d=\"M152 48L144 56L155 59\" fill=\"none\" stroke=\"#F5F4EF\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></svg></div></div>",
+      "css": ".ds-field{background:#1E3A5F;border-radius:8px;padding:28px;width:260px}.ds-sheet{background:#F5F4EF;aspect-ratio:1;transform:rotate(-1.4deg);filter:drop-shadow(0 6px 7px rgba(11,24,48,.45));clip-path:polygon(0 0,70% 0,100% 30%,100% 100%,0 100%)}"
     },
     {
-      "name": "Section Tab",
-      "kind": "nav",
-      "refersTo": "section-tab",
-      "description": "Standalone folder tab titling a README section.",
-      "html": "<span class=\"ds-section-tab\">EJEMPLARES TIPO</span>",
-      "css": ".ds-section-tab{display:inline-block;background:#B42318;color:#EDF0EA;font:600 13px/1 \"Libre Franklin\",sans-serif;letter-spacing:.14em;padding:12px 18px 14px;border-radius:14px 14px 0 0}"
-    },
-    {
-      "name": "Determination Label",
-      "kind": "card",
-      "refersTo": "determination-label",
-      "description": "Ruled specimen label: display name, italic binomial, typed description, bold meta line.",
-      "html": "<div class=\"ds-label\"><div class=\"ds-label-name\">KeyReu</div><div class=\"ds-label-bin\">Pythonia keyreuensis</div><p class=\"ds-label-desc\">Graba una reunión y dispara agentes de código sobre un repo.</p><div class=\"ds-label-meta\">Python · 19 archivos · 2026</div></div>",
-      "css": ".ds-label{background:#EDF0EA;color:#14261C;border:2.2px solid #14261C;outline:.8px solid #14261C;outline-offset:-7px;padding:20px;width:300px}.ds-label-name{font:800 34px/.98 \"Libre Franklin\",sans-serif;letter-spacing:-.01em}.ds-label-bin{font:italic 400 15px \"Libre Caslon Text\",serif;margin-top:6px}.ds-label-desc{font:400 12px/1.3 \"Courier Prime\",monospace;margin:10px 0}.ds-label-meta{font:700 12px \"Courier Prime\",monospace;border-top:.8px solid #14261C;padding-top:8px}"
-    },
-    {
-      "name": "Link Tag",
-      "kind": "button",
-      "refersTo": "link-tag",
-      "description": "Shipping tag with eyelet; the README primary actions.",
-      "html": "<a class=\"ds-tag\" href=\"#\"><span class=\"ds-tag-eye\"></span>PORTAFOLIO <svg width=\"12\" height=\"12\" viewBox=\"0 0 14 14\"><path d=\"M0 14L14 0M4 0H14V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"square\"/></svg></a>",
-      "css": ".ds-tag{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 12px;background:#EDF0EA;color:#14261C;border:2px solid #14261C;clip-path:polygon(12px 0,100% 0,100% 100%,12px 100%,0 calc(100% - 12px),0 12px);font:800 15px \"Libre Franklin\",sans-serif;letter-spacing:.06em;text-decoration:none}.ds-tag-eye{width:12px;height:12px;border-radius:50%;border:3px solid #14261C;box-sizing:border-box}.ds-tag:focus-visible{outline:3px solid #14261C;outline-offset:3px}"
-    },
-    {
-      "name": "Ring Stamp",
+      "name": "Hanko",
       "kind": "custom",
-      "refersTo": "rubber-stamp",
-      "description": "Double-circle rubber stamp in vermilion; awards only.",
-      "html": "<svg class=\"ds-stamp\" viewBox=\"0 0 140 140\" width=\"120\"><g transform=\"rotate(-12 70 70)\" opacity=\".93\"><circle cx=\"70\" cy=\"70\" r=\"64\" fill=\"none\" stroke=\"#B42318\" stroke-width=\"3.5\"/><circle cx=\"70\" cy=\"70\" r=\"34\" fill=\"none\" stroke=\"#B42318\" stroke-width=\"1.6\"/><text x=\"70\" y=\"80\" text-anchor=\"middle\" fill=\"#B42318\" font-family=\"Libre Franklin\" font-weight=\"800\" font-size=\"30\">2026</text></g></svg>",
-      "css": ".ds-stamp{display:block}"
+      "refersTo": "hanko",
+      "description": "Hakubun seal: washi Mincho characters on a vermilion block.",
+      "html": "<span class=\"ds-hanko\">二<br>位</span>",
+      "css": ".ds-hanko{display:inline-block;background:#C8371F;color:#F5F4EF;font:800 30px/1.02 \"Shippori Mincho B1\",serif;padding:7px;border-radius:4px;text-align:center;transform:rotate(3deg)}"
     },
     {
-      "name": "Annotation Slip",
+      "name": "Kirigami Strip",
+      "kind": "nav",
+      "refersTo": "kirigami-strip",
+      "description": "Section title strip cut from the indigo face, kanji paired with Spanish, hishi cut-outs.",
+      "html": "<span class=\"ds-strip\"><span class=\"ds-strip-jp\">作品</span> · Obras <span class=\"ds-hishi\"></span><span class=\"ds-hishi\"></span><span class=\"ds-hishi\"></span></span>",
+      "css": ".ds-strip{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 30px 0 16px;background:#1E3A5F;color:#F5F4EF;font:900 16px \"Zen Kaku Gothic New\",sans-serif;border-radius:5px 0 0 5px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%)}.ds-strip-jp{font:800 19px \"Shippori Mincho B1\",serif}.ds-hishi{width:10px;height:18px;background:#F5F4EF;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}"
+    },
+    {
+      "name": "Link Tab",
+      "kind": "button",
+      "refersTo": "link-tab",
+      "description": "Folded paper tab; the README primary actions.",
+      "html": "<a class=\"ds-tab\" href=\"#\">PORTAFOLIO <svg width=\"12\" height=\"12\" viewBox=\"0 0 14 14\"><path d=\"M0 14L14 0M4 0H14V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\"/></svg></a>",
+      "css": ".ds-tab{position:relative;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 26px 0 16px;background:#F5F4EF;color:#142A47;border:2px solid #142A47;font:900 15px \"Zen Kaku Gothic New\",sans-serif;text-decoration:none;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}.ds-tab::after{content:\"\";position:absolute;top:0;right:0;width:14px;height:14px;background:#1E3A5F;clip-path:polygon(0 0,100% 100%,0 100%)}.ds-tab:hover{background:#fff}.ds-tab:focus-visible{outline:3px solid #142A47;outline-offset:3px}"
+    },
+    {
+      "name": "Band Tag",
       "kind": "chip",
-      "refersTo": "annotation-slip",
-      "description": "Thin-bordered typed slip: origin URL or branch tag.",
-      "html": "<span class=\"ds-slip\">github.com/danieln3m0/KeyReu</span>",
-      "css": ".ds-slip{display:inline-block;background:#EDF0EA;color:#14261C;border:1.2px solid #14261C;padding:6px 10px;font:400 12px \"Courier Prime\",monospace}"
+      "refersTo": "band-tag",
+      "description": "Washi name tag on a featured river band, kept out of the seal zone.",
+      "html": "<span class=\"ds-bandtag\">KeyReu</span>",
+      "css": ".ds-bandtag{display:inline-block;background:#F5F4EF;color:#142A47;border:1.3px solid #142A47;padding:3px 8px;font:900 13px \"Zen Kaku Gothic New\",sans-serif}"
+    },
+    {
+      "name": "Notation Legend",
+      "kind": "custom",
+      "refersTo": "washi-panel",
+      "description": "Valley and mountain lines with paired Japanese and Spanish labels.",
+      "html": "<div class=\"ds-legend\"><div><svg width=\"44\" height=\"6\"><path d=\"M0 3h44\" stroke=\"#142A47\" stroke-width=\"2\" stroke-dasharray=\"7 4\"/></svg> 谷折り · valle</div><div><svg width=\"44\" height=\"6\"><path d=\"M0 3h44\" stroke=\"#142A47\" stroke-width=\"2\" stroke-dasharray=\"9 3 1.6 3 1.6 3\"/></svg> 山折り · monte</div></div>",
+      "css": ".ds-legend{background:#F5F4EF;color:#142A47;border:2px solid #142A47;padding:16px 20px;font:500 14px/1.9 \"Zen Kaku Gothic New\",sans-serif}.ds-legend svg{vertical-align:middle;margin-right:10px}"
     }
   ],
   "narrative": {
-    "northStar": "The Pressed Specimen",
-    "overview": "The profile is a herbarium. Each repository is pressed onto a cool white mounting sheet as a plant drawn from its real file tree (stem = repo root, branches = directories, leaves = files, roots = loose root files), filed inside a vermilion type folder, and labelled like a museum specimen: a ruled determination label, typewritten collector data, an italic binomial, an accession barcode, linen tape strips and rubber stamps. Everything is a physical object with an opaque ground, so the same SVG reads identically on GitHub's light and dark themes; there is no theme switching.\n\nThe system is two inks and one accent material. Specimen ink does all the drawing and writing; vermilion is reserved for the folder that holds the sheet and for the rubber stamps pressed on it. Density is that of a real sheet: a large, quiet plant, a compact label in the corner, small typed annotations. The specimens are deterministic and regenerate from live data every Action run, so the world is grown, not illustrated.",
+    "northStar": "The Two-Sided Kami",
+    "overview": "The profile is a folder of origami crease patterns (展開図). Every piece is cut from one sheet of two-sided kami: the indigo colored face is the field, carrying a tone-on-tone asanoha, and the washi reverse is the drawing surface where creases are printed in indigo ink. Each repository is designed as a model with the tree method (every file a flap circle, every folder a river band, gaps filled with rabbit-ear molecules) and printed in Yoshizawa–Randlett notation. The patterns regenerate from live repo trees on every Action run, so the drawings are folded from data, not illustrated.\n\nThe palette is paper, not pigment: two faces of the same sheet plus one seal ink. Vermilion appears only as hanko pressed in hakubun. Sheets sit tilted on the field with a folded corner that reveals a chiyogami face and a curved valley-fold arrow, so every work reads as a physical object about to be folded. Density is that of a real diagram: a dense crease pattern, a short caption, a single meta line that states what was drawn. Every Japanese label travels with its Spanish translation; Japanese is the notation, Spanish is the reading.\n\nConfirmed refusals: the badge wall and stat cards, and the generic \"Japanese\" costume (cherry blossoms, rising-sun rays, red disc motifs).",
     "keyCharacteristics": [
-      "Opaque physical objects (folder, sheet, label, slip, tag); one asset per piece serves both GitHub themes.",
-      "Two inks, no greys: specimen ink on mounting sheet, vermilion only on folders, tabs and stamps.",
-      "All text is converted to outlines at build time.",
-      "Every large piece ships a full and a compact composition inside the same SVG.",
-      "Plants are generated deterministically from file trees; leaf shape encodes file kind.",
-      "One motion only: a one-time stem draw on the header."
+      "Opaque objects only; one SVG serves GitHub's light and dark themes.",
+      "Indigo field, washi drawing surface, indigo crease ink, vermilion only for hanko.",
+      "Yoshizawa–Randlett notation used identically everywhere: valley dashed, mountain dash-dot-dot.",
+      "Tilted sheets with folded corners, valley-fold arrows and a soft contact shadow.",
+      "All text outlined to paths at build time; every large piece ships full and compact compositions.",
+      "Every Japanese label paired with Spanish, in full and compact compositions alike."
     ],
     "rules": [
       {
-        "name": "The Two Inks Rule",
-        "body": "On the sheet there is specimen ink and there is paper. No greys, no tints, no opacity ramps for hierarchy; hierarchy comes from type face, size and stroke weight.",
+        "name": "The Two Faces Rule",
+        "body": "Indigo is the colored face and the field; washi is the reverse and the drawing surface. Text on indigo is washi; text and creases on washi are Ai Deep. Hierarchy within crease work comes from opacity and stroke weight of the one ink, never from a new hue.",
         "section": "colors"
       },
       {
-        "name": "The Folder-And-Stamp Rule",
-        "body": "Red appears only as folder material (bodies and tabs) and rubber-stamp ink. If something red is neither a folder nor a stamp, it is wrong.",
+        "name": "The Seal Only Rule",
+        "body": "Vermilion exists only as a hanko block in hakubun. If something red is not a seal, it is wrong.",
         "section": "colors"
       },
       {
         "name": "The Opaque Object Rule",
-        "body": "Every piece has its own opaque ground (folder or sheet), so it carries its own contrast to any GitHub theme. No transparent backgrounds, no `<picture>` theme variants.",
+        "body": "Every piece carries its own indigo field or washi ground and a border where needed, so it holds its contrast on any GitHub theme. No transparent backgrounds, no `<picture>` theme switching.",
         "section": "colors"
       },
       {
@@ -201,38 +229,38 @@
         "section": "typography"
       },
       {
-        "name": "The Fit Not Squeeze Rule",
-        "body": "Over-long strings shrink their size to fit the measure; tracking is never tightened and letters on a stamp arc are never crowded.",
+        "name": "The Paired Label Rule",
+        "body": "Every Japanese label is set beside its Spanish translation, joined by a middle dot (`谷折り · valle`, `作品 · Obras`, `二位 · 2.º puesto`), including in compact compositions.",
         "section": "typography"
       },
       {
         "name": "The Name Is The Headline Rule",
-        "body": "No kicker, eyebrow or overline above a name. The institution line lives on the folder tab, never on the label.",
+        "body": "Nothing sits above a name or a work title; context lives in the legend, the caption below or the meta line.",
         "section": "typography"
       },
       {
-        "name": "The Paper Stack Rule",
-        "body": "Depth comes only from overlap, rotation (stamps -8 to -14 degrees, envelopes -3) and the darker back tab. Never a drop shadow, never a hard offset shadow.",
+        "name": "The Paper Light Rule",
+        "body": "Shadows are soft and belong to paper resting or folded: the contact shadow under a sheet and the flap shadow under a folded corner. Never a hard offset shadow, never a shadow on panels, tabs or strips.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** keep every piece an opaque object with its own folder or sheet ground, so one asset works on both GitHub themes.",
-      "**Do** draw and write everything on the sheet in Specimen Ink; use red only for folders, tabs and stamps.",
-      "**Do** convert all text to outlines and let over-long strings shrink to fit rather than tighten.",
-      "**Do** ship a full and a compact composition inside each large SVG, switched by the image-width media query (330 / 450 / 600).",
-      "**Do** generate plants from real file trees with a fixed seed so the same repo always grows the same plant.",
-      "**Do** put the institution or family line on the folder tab.",
-      "**Do** format numbers the Spanish way: `9999`, `10 000`."
+      "**Do** draw valley folds dashed (`7 4`) and mountain folds dash-dot-dot (`9 3 1.6 3 1.6 3`), the same in patterns, legends, notation and tessellation.",
+      "**Do** keep creases and text on washi in Ai Deep, and text on the indigo field in washi.",
+      "**Do** pair every Japanese label with its Spanish translation, in full and compact compositions.",
+      "**Do** give each tilted sheet a folded corner with a curved valley-fold arrow and the soft contact shadow, rotating chiyogami asanoha, seigaiha, kikkō.",
+      "**Do** cap crease patterns at 30 flaps and state the drawn count in the meta line.",
+      "**Do** ship a full and a compact composition inside each large SVG (330 / 450 / 600).",
+      "**Do** convert all text to outlines and shrink over-long strings to fit."
     ],
     "donts": [
-      "**Don't** introduce greys, tints or a third ink for hierarchy.",
-      "**Don't** put kickers, eyebrows or overlines above a name.",
-      "**Don't** add shadows of any kind; depth is overlap and rotation.",
+      "**Don't** use vermilion for anything but hanko seals.",
+      "**Don't** use rising-sun rays, red disc motifs, cherry blossoms or other generic \"Japanese\" costume.",
+      "**Don't** put kickers, eyebrows or overlines above a name or title.",
+      "**Don't** switch assets per theme with `<picture>`; each object carries its own ground.",
       "**Don't** use live `<text>` or web fonts inside the SVGs.",
-      "**Don't** switch assets per theme with `<picture>`; the object carries its own ground.",
-      "**Don't** animate anything but the header's one-time stem draw, and never without the reduced-motion guard.",
-      "**Don't** warm the sheet toward cream."
+      "**Don't** add hard offset shadows or shadows on flat pieces (panels, tabs, strips).",
+      "**Don't** introduce a new hue for hierarchy; vary the one ink's weight and opacity."
     ]
   }
 }

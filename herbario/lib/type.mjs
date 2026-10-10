@@ -13,12 +13,14 @@ const FILES = {
   italic: 'libre-caslon-text-latin-400-italic.ttf',
 }
 
+export function parseFont(path) {
+  const buf = readFileSync(path)
+  return opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength))
+}
+
 export function loadFonts(dir) {
   const fonts = {}
-  for (const [key, file] of Object.entries(FILES)) {
-    const buf = readFileSync(join(dir, file))
-    fonts[key] = opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength))
-  }
+  for (const [key, file] of Object.entries(FILES)) fonts[key] = parseFont(join(dir, file))
   return fonts
 }
 
