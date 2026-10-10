@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T07:50:40.560Z",
+  "title": "Design System: Herbario de repositorios",
+  "extensions": {
+    "colorMeta": {
+      "folder-vermilion": {
+        "role": "primary",
+        "displayName": "Folder Vermilion",
+        "canonical": "#B42318",
+        "tonalRamp": [
+          "#3A0905",
+          "#5E120B",
+          "#8E1A12",
+          "#B42318",
+          "#D2483A",
+          "#E57D72",
+          "#F2B2AA",
+          "#FBE3E0"
+        ]
+      },
+      "folder-tab-deep": {
+        "role": "primary",
+        "displayName": "Folder Tab Deep",
+        "canonical": "#8E1A12",
+        "tonalRamp": [
+          "#2E0704",
+          "#4D0F09",
+          "#6E150E",
+          "#8E1A12",
+          "#B0352B",
+          "#CF6B61",
+          "#E8A69F",
+          "#F8DFDC"
+        ]
+      },
+      "mounting-sheet": {
+        "role": "neutral",
+        "displayName": "Mounting Sheet",
+        "canonical": "#EDF0EA",
+        "tonalRamp": [
+          "#1F231E",
+          "#3A403A",
+          "#596158",
+          "#7C857A",
+          "#A1AA9F",
+          "#C6CEC3",
+          "#EDF0EA",
+          "#F8FAF6"
+        ]
+      },
+      "specimen-ink": {
+        "role": "neutral",
+        "displayName": "Specimen Ink",
+        "canonical": "#14261C",
+        "tonalRamp": [
+          "#14261C",
+          "#24402F",
+          "#365C45",
+          "#4B795D",
+          "#689779",
+          "#8EB59C",
+          "#B8D3C1",
+          "#E3EFE6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (Libre Franklin 800)",
+        "purpose": "Names on determination labels and link-tag labels; the largest type in any piece."
+      },
+      "caps": {
+        "displayName": "Institution Caps (Libre Franklin 600)",
+        "purpose": "Folder tabs, panel titles, month marks, leaf-key labels, stamp arc text."
+      },
+      "typed": {
+        "displayName": "Collector Data (Courier Prime 400)",
+        "purpose": "Descriptions, collector lines, origin slips, barcode captions, footer."
+      },
+      "typed-bold": {
+        "displayName": "Collector Data Bold (Courier Prime 700)",
+        "purpose": "Label meta line and header branch tags."
+      },
+      "binomial": {
+        "displayName": "Binomial (Libre Caslon Text Italic)",
+        "purpose": "Invented Latin name under each display name."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "stem-draw",
+        "value": "stroke-dashoffset 1 -> 0, 1.2s cubic-bezier(.22,1,.36,1), staggered by growth order",
+        "purpose": "One-time header stem draw; disabled under prefers-reduced-motion."
+      },
+      {
+        "name": "leaf-appear",
+        "value": "opacity 0 -> 1, 0.7s cubic-bezier(.22,1,.36,1), 0.35s after its stem point",
+        "purpose": "Header leaves only; disabled under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "specimen-compact",
+        "value": "330px",
+        "purpose": "Rendered image width below which specimens use the compact composition."
+      },
+      {
+        "name": "footer-compact",
+        "value": "450px",
+        "purpose": "Footer compact composition."
+      },
+      {
+        "name": "panel-compact",
+        "value": "600px",
+        "purpose": "Header, phenology and leaf key compact composition."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Folder with Sheet",
+      "kind": "card",
+      "refersTo": "folder",
+      "description": "Vermilion type folder with deep-red back tab holding a cool paper sheet.",
+      "html": "<div class=\"ds-folder\"><span class=\"ds-folder-tab\">TYPESCRIPT</span><div class=\"ds-folder-body\"><div class=\"ds-sheet\"></div></div></div>",
+      "css": ".ds-folder{width:280px}.ds-folder-tab{display:inline-block;margin-left:10px;background:#8E1A12;color:#EDF0EA;font:600 11px/1 \"Libre Franklin\",sans-serif;letter-spacing:.14em;padding:8px 14px 10px;border-radius:14px 14px 0 0}.ds-folder-body{background:#B42318;border-radius:8px;padding:8px;margin-top:-4px}.ds-sheet{background:#EDF0EA;border-radius:2px;height:200px}"
+    },
+    {
+      "name": "Section Tab",
+      "kind": "nav",
+      "refersTo": "section-tab",
+      "description": "Standalone folder tab titling a README section.",
+      "html": "<span class=\"ds-section-tab\">EJEMPLARES TIPO</span>",
+      "css": ".ds-section-tab{display:inline-block;background:#B42318;color:#EDF0EA;font:600 13px/1 \"Libre Franklin\",sans-serif;letter-spacing:.14em;padding:12px 18px 14px;border-radius:14px 14px 0 0}"
+    },
+    {
+      "name": "Determination Label",
+      "kind": "card",
+      "refersTo": "determination-label",
+      "description": "Ruled specimen label: display name, italic binomial, typed description, bold meta line.",
+      "html": "<div class=\"ds-label\"><div class=\"ds-label-name\">KeyReu</div><div class=\"ds-label-bin\">Pythonia keyreuensis</div><p class=\"ds-label-desc\">Graba una reunión y dispara agentes de código sobre un repo.</p><div class=\"ds-label-meta\">Python · 19 archivos · 2026</div></div>",
+      "css": ".ds-label{background:#EDF0EA;color:#14261C;border:2.2px solid #14261C;outline:.8px solid #14261C;outline-offset:-7px;padding:20px;width:300px}.ds-label-name{font:800 34px/.98 \"Libre Franklin\",sans-serif;letter-spacing:-.01em}.ds-label-bin{font:italic 400 15px \"Libre Caslon Text\",serif;margin-top:6px}.ds-label-desc{font:400 12px/1.3 \"Courier Prime\",monospace;margin:10px 0}.ds-label-meta{font:700 12px \"Courier Prime\",monospace;border-top:.8px solid #14261C;padding-top:8px}"
+    },
+    {
+      "name": "Link Tag",
+      "kind": "button",
+      "refersTo": "link-tag",
+      "description": "Shipping tag with eyelet; the README primary actions.",
+      "html": "<a class=\"ds-tag\" href=\"#\"><span class=\"ds-tag-eye\"></span>PORTAFOLIO <svg width=\"12\" height=\"12\" viewBox=\"0 0 14 14\"><path d=\"M0 14L14 0M4 0H14V10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"square\"/></svg></a>",
+      "css": ".ds-tag{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 12px;background:#EDF0EA;color:#14261C;border:2px solid #14261C;clip-path:polygon(12px 0,100% 0,100% 100%,12px 100%,0 calc(100% - 12px),0 12px);font:800 15px \"Libre Franklin\",sans-serif;letter-spacing:.06em;text-decoration:none}.ds-tag-eye{width:12px;height:12px;border-radius:50%;border:3px solid #14261C;box-sizing:border-box}.ds-tag:focus-visible{outline:3px solid #14261C;outline-offset:3px}"
+    },
+    {
+      "name": "Ring Stamp",
+      "kind": "custom",
+      "refersTo": "rubber-stamp",
+      "description": "Double-circle rubber stamp in vermilion; awards only.",
+      "html": "<svg class=\"ds-stamp\" viewBox=\"0 0 140 140\" width=\"120\"><g transform=\"rotate(-12 70 70)\" opacity=\".93\"><circle cx=\"70\" cy=\"70\" r=\"64\" fill=\"none\" stroke=\"#B42318\" stroke-width=\"3.5\"/><circle cx=\"70\" cy=\"70\" r=\"34\" fill=\"none\" stroke=\"#B42318\" stroke-width=\"1.6\"/><text x=\"70\" y=\"80\" text-anchor=\"middle\" fill=\"#B42318\" font-family=\"Libre Franklin\" font-weight=\"800\" font-size=\"30\">2026</text></g></svg>",
+      "css": ".ds-stamp{display:block}"
+    },
+    {
+      "name": "Annotation Slip",
+      "kind": "chip",
+      "refersTo": "annotation-slip",
+      "description": "Thin-bordered typed slip: origin URL or branch tag.",
+      "html": "<span class=\"ds-slip\">github.com/danieln3m0/KeyReu</span>",
+      "css": ".ds-slip{display:inline-block;background:#EDF0EA;color:#14261C;border:1.2px solid #14261C;padding:6px 10px;font:400 12px \"Courier Prime\",monospace}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Pressed Specimen",
+    "overview": "The profile is a herbarium. Each repository is pressed onto a cool white mounting sheet as a plant drawn from its real file tree (stem = repo root, branches = directories, leaves = files, roots = loose root files), filed inside a vermilion type folder, and labelled like a museum specimen: a ruled determination label, typewritten collector data, an italic binomial, an accession barcode, linen tape strips and rubber stamps. Everything is a physical object with an opaque ground, so the same SVG reads identically on GitHub's light and dark themes; there is no theme switching.\n\nThe system is two inks and one accent material. Specimen ink does all the drawing and writing; vermilion is reserved for the folder that holds the sheet and for the rubber stamps pressed on it. Density is that of a real sheet: a large, quiet plant, a compact label in the corner, small typed annotations. The specimens are deterministic and regenerate from live data every Action run, so the world is grown, not illustrated.",
+    "keyCharacteristics": [
+      "Opaque physical objects (folder, sheet, label, slip, tag); one asset per piece serves both GitHub themes.",
+      "Two inks, no greys: specimen ink on mounting sheet, vermilion only on folders, tabs and stamps.",
+      "All text is converted to outlines at build time.",
+      "Every large piece ships a full and a compact composition inside the same SVG.",
+      "Plants are generated deterministically from file trees; leaf shape encodes file kind.",
+      "One motion only: a one-time stem draw on the header."
+    ],
+    "rules": [
+      {
+        "name": "The Two Inks Rule",
+        "body": "On the sheet there is specimen ink and there is paper. No greys, no tints, no opacity ramps for hierarchy; hierarchy comes from type face, size and stroke weight.",
+        "section": "colors"
+      },
+      {
+        "name": "The Folder-And-Stamp Rule",
+        "body": "Red appears only as folder material (bodies and tabs) and rubber-stamp ink. If something red is neither a folder nor a stamp, it is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Opaque Object Rule",
+        "body": "Every piece has its own opaque ground (folder or sheet), so it carries its own contrast to any GitHub theme. No transparent backgrounds, no `<picture>` theme variants.",
+        "section": "colors"
+      },
+      {
+        "name": "The Outlines Only Rule",
+        "body": "Text is typeset to glyph outlines at build time (one `<defs>` path per glyph, reused). An `<img>` SVG cannot load fonts; live `<text>` would fall back to system faces.",
+        "section": "typography"
+      },
+      {
+        "name": "The Fit Not Squeeze Rule",
+        "body": "Over-long strings shrink their size to fit the measure; tracking is never tightened and letters on a stamp arc are never crowded.",
+        "section": "typography"
+      },
+      {
+        "name": "The Name Is The Headline Rule",
+        "body": "No kicker, eyebrow or overline above a name. The institution line lives on the folder tab, never on the label.",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper Stack Rule",
+        "body": "Depth comes only from overlap, rotation (stamps -8 to -14 degrees, envelopes -3) and the darker back tab. Never a drop shadow, never a hard offset shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep every piece an opaque object with its own folder or sheet ground, so one asset works on both GitHub themes.",
+      "**Do** draw and write everything on the sheet in Specimen Ink; use red only for folders, tabs and stamps.",
+      "**Do** convert all text to outlines and let over-long strings shrink to fit rather than tighten.",
+      "**Do** ship a full and a compact composition inside each large SVG, switched by the image-width media query (330 / 450 / 600).",
+      "**Do** generate plants from real file trees with a fixed seed so the same repo always grows the same plant.",
+      "**Do** put the institution or family line on the folder tab.",
+      "**Do** format numbers the Spanish way: `9999`, `10 000`."
+    ],
+    "donts": [
+      "**Don't** introduce greys, tints or a third ink for hierarchy.",
+      "**Don't** put kickers, eyebrows or overlines above a name.",
+      "**Don't** add shadows of any kind; depth is overlap and rotation.",
+      "**Don't** use live `<text>` or web fonts inside the SVGs.",
+      "**Don't** switch assets per theme with `<picture>`; the object carries its own ground.",
+      "**Don't** animate anything but the header's one-time stem draw, and never without the reduced-motion guard.",
+      "**Don't** warm the sheet toward cream."
+    ]
+  }
+}

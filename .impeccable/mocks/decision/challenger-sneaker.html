@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pared de cajas</title>
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{background:#0d1117;width:1440px;height:900px;overflow:hidden;font-family:system-ui,sans-serif}
+  .top{height:64px;border-bottom:1px solid #30363d}
+  .wrap{display:grid;grid-template-columns:296px 1fr;gap:32px;padding:32px 80px}
+  .avatar{width:296px;height:296px;border-radius:50%;background:#21262d}
+  .readme{border:1px solid #30363d;border-radius:6px;padding:24px}
+  .wall{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#1a0f08;padding:6px}
+  .box{background:#d2601a;height:150px;padding:14px;color:#111;display:flex;flex-direction:column;justify-content:space-between;border-bottom:6px solid #a8470f}
+  .box b{font:900 30px/1 "Arial Narrow",Impact,sans-serif;text-transform:uppercase}
+  .chips{display:flex;gap:4px}.chips i{width:28px;height:14px;display:block}
+  .size{font:15px "Courier New",monospace}
+  .pull{grid-column:1 / span 3;height:200px;background:#e2712a;transform:translateX(30px);box-shadow:-10px 10px 0 #1a0f08;padding:22px;display:flex;justify-content:space-between;align-items:flex-end}
+  .pull b{font:900 70px/.9 "Arial Narrow",Impact,sans-serif;text-transform:uppercase;color:#111}
+</style></head><body>
+<div class="top"></div>
+<div class="wrap"><div><div class="avatar"></div></div>
+<div class="readme"><div class="wall">
+  <div class="pull"><b>Francis Daniel<br>Full-Stack</b><span class="size">LIMA · UPC · 2026</span></div>
+  <div class="box"><b>OratorIA</b><div class="chips"><i style="background:#f7f5f0"></i><i style="background:#111"></i></div><span class="size">2026 · GEMMA · 2.º</span></div>
+  <div class="box"><b>Ayni</b><div class="chips"><i style="background:#3572a5"></i><i style="background:#b07219"></i></div><span class="size">PY · JAVA · ML</span></div>
+  <div class="box"><b>KeyReu</b><div class="chips"><i style="background:#3572a5"></i></div><span class="size">PY · VOZ · AGENTES</span></div>
+  <div class="box"><b>Portafolio</b><div class="chips"><i style="background:#3178c6"></i></div><span class="size">TS · NEXT · 3D</span></div>
+  <div class="box"><b>POSLas4as</b><div class="chips"><i style="background:#b07219"></i></div><span class="size">JAVA · DDD</span></div>
+  <div class="box"><b>seminario</b><div class="chips"><i style="background:#3178c6"></i></div><span class="size">TS · NEXT</span></div>
+</div></div></div>
+</body></html>
