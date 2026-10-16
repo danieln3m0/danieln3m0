@@ -1,0 +1,129 @@
+# Regenera las imágenes del perfil y la sección "Actividad Reciente" del README.
+#  - dist/*.svg (serpiente, trofeos, logros, gráfico de actividad) se publican en
+#    la rama `output`, que el README enlaza.
+#  - README.md se actualiza en main solo si cambió la actividad.
+name: Perfil
+
+on:
+  schedule:
+    # Cada 6 horas, fuera de la hora en punto (GitHub retrasa esos turnos).
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "profile/**"
+      - ".github/workflows/profile.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Tests del generador
+        run: npm test
+        working-directory: profile
+
+      # Si alguna imagen falla al regenerarse se publica la versión anterior.
+      # Solo se tolera que la rama no exista (primera ejecución).
+      - name: Recuperar la última salida publicada
+        run: |
+          mkdir -p dist
+          status=0
+          git ls-remote --exit-code --heads origin output > /dev/null || status=$?
+          if [ "$status" -eq 0 ]; then
+            git fetch --depth=1 origin output
+            if git cat-file -e FETCH_HEAD:dist 2>/dev/null; then
+              git archive FETCH_HEAD dist | tar -x
+            fi
+          elif [ "$status" -eq 2 ]; then
+            echo "La rama output aún no existe"
+          else
+            echo "::error::No se pudo consultar la rama output (código $status)"
+            exit 1
+          fi
+
+      - name: Generar trofeos, logros y gráfico de actividad
+        id: build
+        run: node build.mjs
+        working-directory: profile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILE_LOGIN: ${{ github.repository_owner }}
+          PROFILE_TASKS: trofeos,grafico de actividad,logros
+
+      # Servicio externo: si falla se conserva la serpiente anterior.
+      - name: Generar la serpiente de contribuciones
+        id: snake
+        continue-on-error: true
+        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3.5.0
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Comprobar que están todas las imágenes
+        run: |
+          for f in trophies achievements activity-graph github-contribution-grid-snake github-contribution-grid-snake-dark; do
+            test -s "dist/$f.svg" || { echo "::error::Falta dist/$f.svg"; exit 1; }
+          done
+
+      # Un commit huérfano por ejecución: la rama no acumula historia de imágenes.
+      - name: Publicar en la rama output
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p publish
+          cp -r dist publish/
+          cd publish
+          git init -q -b output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Actualizar imágenes del perfil ($(date -u +%Y-%m-%d))"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" output
+
+      # Se regenera la sección sobre el main más reciente en vez de rebasar, para
+      # no chocar con commits que se hayan empujado mientras corría el job.
+      - name: Guardar la actividad reciente en el README
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILE_LOGIN: ${{ github.repository_owner }}
+          PROFILE_TASKS: actividad reciente
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch -q origin main
+            git checkout -q -f -B update origin/main
+            node profile/build.mjs
+            if git diff --quiet -- README.md; then
+              echo "Sin cambios en la actividad"
+              exit 0
+            fi
+            git add README.md
+            git commit -q -m "Actualizar actividad reciente"
+            if git push -q origin update:main; then exit 0; fi
+            echo "El push falló (intento $attempt), reintentando sobre el main actual"
+          done
+          exit 1
+
+      - name: Marcar el job si alguna imagen no se pudo regenerar
+        if: steps.build.outputs.failed != '0' || steps.snake.outcome == 'failure'
+        run: |
+          echo "::error::Se publicaron versiones anteriores de algunas imágenes. Revisa los avisos de los pasos de generación."
+          exit 1

@@ -1,0 +1,13 @@
+{
+  "name": "profile-readme",
+  "private": true,
+  "type": "module",
+  "description": "Genera las tarjetas del README del perfil (trofeos, logros, gráfico de actividad) y la sección de actividad reciente.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test"
+  }
+}
