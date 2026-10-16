@@ -70,7 +70,7 @@ const tasks = {
         }),
     )
     const before = await readFile(README, 'utf8')
-    const after = replaceSection(before, 'activity', renderActivity(items, { timeZone: TIME_ZONE }))
+    const after = replaceSection(before, 'activity', renderActivity(items, { timeZone: TIME_ZONE, owner: LOGIN }))
     if (after !== before) await writeFile(README, after)
     console.log(after === before ? 'README sin cambios' : 'README actualizado')
   },

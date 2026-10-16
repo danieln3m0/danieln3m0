@@ -57,18 +57,34 @@ test('excluye repos, ignora eventos irrelevantes y respeta el máximo', () => {
   assert.ok(items.every((i) => i.kind === 'star'))
 })
 
-test('renderActivity produce una lista numerada con fecha en español', () => {
+test('renderActivity genera una tabla con icono, actividad, repositorio y fecha', () => {
   const md = renderActivity(
     [
       { kind: 'push', repo: 'u/a', ref: 'main', count: 3, date: '2026-10-10T15:00:00Z' },
-      { kind: 'repo', repo: 'u/b', date: '2026-10-09T15:00:00Z' },
+      { kind: 'repo', repo: 'o/b', date: '2025-12-09T15:00:00Z' },
     ],
-    { timeZone: 'America/Lima' },
+    { timeZone: 'America/Lima', owner: 'u', now: new Date('2026-10-15T00:00:00Z') },
   )
   const lines = md.split('\n')
-  assert.equal(lines.length, 2)
-  assert.match(lines[0], /^1\. <img src="[^"]+\/Symbols\/Up%20Arrow\.png"[^>]*\/> Hizo 3 pushes a `main` en \[u\/a\]\(https:\/\/github\.com\/u\/a\) · <sub>10 oct\.? 2026<\/sub>$/)
-  assert.match(lines[1], /^2\. <img [^>]*alt="Sparkles"[^>]*\/> Creó el repositorio \[u\/b\]/)
+  assert.deepEqual(lines.slice(0, 2), ['| | Actividad | Repositorio | Fecha |', '|:-:|:--|:--|:-:|'])
+  assert.equal(lines.length, 4)
+  // Repo propio sin dueño y fecha sin año (año actual).
+  assert.match(
+    lines[2],
+    /^\| <img src="[^"]+\/Symbols\/Up%20Arrow\.png"[^>]*\/> \| \*\*3 pushes\*\* a `main` \| \[a\]\(https:\/\/github\.com\/u\/a\) \| <sub>10 oct<\/sub> \|$/,
+  )
+  // Repo ajeno con dueño y fecha de otro año con año.
+  assert.match(lines[3], /alt="Sparkles"[^>]*\/> \| \*\*Creó\*\* el repositorio \| \[o\/b\]\(https:\/\/github\.com\/o\/b\) \| <sub>9 dic 2025<\/sub> \|$/)
+})
+
+test('renderActivity escapa barras verticales para no romper la tabla', () => {
+  const md = renderActivity([
+    { kind: 'pr', action: 'opened', repo: 'u/a', number: 1, title: 'a | b', url: 'https://github.com/u/a/pull/1', date: '2026-10-10T15:00:00Z' },
+    { kind: 'push', repo: 'u/a', ref: 'x|y', count: 1, date: '2026-10-10T15:00:00Z' },
+  ])
+  for (const line of md.split('\n').slice(2)) {
+    assert.equal(line.replace(/\\\|/g, '').split('|').length, 6, line)
+  }
 })
 
 test('renderActivity sin eventos muestra un mensaje en vez de dejar la sección vacía', () => {
@@ -112,9 +128,9 @@ test('renderActivity cubre PR, revisión, fork y versión sin dejar campos vací
     { kind: 'fork', repo: 'o/r', fork: 'u/r', date: '2026-10-10T15:00:00Z' },
     { kind: 'release', repo: 'u/a', ref: 'v1.0', url: 'https://github.com/u/a/releases/tag/v1.0', date: '2026-10-10T15:00:00Z' },
   ])
-  assert.match(md, /alt="Purple Heart"[^>]*\/> Fusionó el PR \[\\#7 Título \\\[raro\\\]\]\(https:\/\/github\.com\/u\/a\/pull\/7\)/)
-  assert.match(md, /alt="Eyes"[^>]*\/> Revisó el PR \[\\#8\]/)
-  assert.match(md, /alt="Fork and Knife"[^>]*\/> Hizo fork de \[o\/r\]\(https:\/\/github\.com\/o\/r\) → \[u\/r\]/)
-  assert.match(md, /alt="Rocket"[^>]*\/> Publicó la versión \[v1\.0\]/)
+  assert.match(md, /alt="Purple Heart"[^>]*\/> \| \*\*Fusionó\*\* el PR \[\\#7 · Título \\\[raro\\\]\]\(https:\/\/github\.com\/u\/a\/pull\/7\)/)
+  assert.match(md, /alt="Eyes"[^>]*\/> \| \*\*Revisó\*\* el PR \[\\#8\]/)
+  assert.match(md, /alt="Fork and Knife"[^>]*\/> \| \*\*Hizo fork\*\* → \[u\/r\]\(https:\/\/github\.com\/u\/r\) \| \[o\/r\]/)
+  assert.match(md, /alt="Rocket"[^>]*\/> \| \*\*Publicó\*\* la versión \[v1\.0\]/)
   assert.doesNotMatch(md, /undefined|null/)
 })

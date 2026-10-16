@@ -119,64 +119,70 @@ export function escapeMd(text) {
     .replace(/>/g, '&gt;')
 }
 
-function truncate(text, n = 70) {
+function truncate(text, n = 44) {
   const t = String(text).trim().replace(/\s+/g, ' ')
   return t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t
 }
 
-const repoLink = (repo) => `[${escapeMd(repo)}](${GH}/${repo})`
-const ref = (r) => `\`${String(r).replace(/`/g, '')}\``
+const ref = (r) => `\`${String(r).replace(/[`|]/g, '')}\``
 const numbered = (item) => {
-  const label = item.title ? `#${item.number} ${truncate(item.title)}` : `#${item.number}`
+  const label = item.title ? `#${item.number} · ${truncate(item.title)}` : `#${item.number}`
   return `[${escapeMd(label)}](${item.url})`
 }
 
-export function renderActivity(items, { timeZone = 'UTC' } = {}) {
-  if (!items.length) return '_Sin actividad pública en los últimos 90 días._'
-  const fmt = new Intl.DateTimeFormat('es-PE', { timeZone, day: 'numeric', month: 'short', year: 'numeric' })
-  const lines = items.map((it) => {
-    const r = repoLink(it.repo)
-    let text
-    switch (it.kind) {
-      case 'push':
-        text = `${e('push')} ${it.count > 1 ? `Hizo ${it.count} pushes` : 'Subió cambios'} a ${ref(it.ref)} en ${r}`
-        break
-      case 'pr': {
-        const verb = { opened: `${e('prOpened')} Abrió`, closed: `${e('closed')} Cerró`, reopened: `${e('reopened')} Reabrió`, merged: `${e('prMerged')} Fusionó` }[it.action]
-        text = `${verb} el PR ${numbered(it)} en ${r}`
-        break
-      }
-      case 'review':
-        text = `${e('review')} Revisó el PR ${numbered(it)} en ${r}`
-        break
-      case 'issue': {
-        const verb = { opened: `${e('issueOpened')} Abrió`, closed: `${e('issueClosed')} Cerró`, reopened: `${e('reopened')} Reabrió` }[it.action]
-        text = `${verb} el issue ${numbered(it)} en ${r}`
-        break
-      }
-      case 'comment':
-        text = `${e('comment')} Comentó en ${numbered(it)} en ${r}`
-        break
-      case 'repo':
-        text = `${e('repo')} Creó el repositorio ${r}`
-        break
-      case 'tag':
-        text = `${e('tag')} Creó la etiqueta ${ref(it.ref)} en ${r}`
-        break
-      case 'release':
-        text = `${e('release')} Publicó la versión [${escapeMd(it.ref)}](${it.url}) en ${r}`
-        break
-      case 'fork':
-        text = `${e('fork')} Hizo fork de ${r}${it.fork ? ` → ${repoLink(it.fork)}` : ''}`
-        break
-      case 'star':
-        text = `${e('star')} Dio estrella a ${r}`
-        break
-      case 'public':
-        text = `${e('public')} Hizo público ${r}`
-        break
+// Texto de la columna "Actividad" (el repositorio va en su propia columna).
+function describe(it) {
+  switch (it.kind) {
+    case 'push':
+      return it.count > 1 ? `**${it.count} pushes** a ${ref(it.ref)}` : `**Push** a ${ref(it.ref)}`
+    case 'pr': {
+      const verb = { opened: 'Abrió', closed: 'Cerró', reopened: 'Reabrió', merged: 'Fusionó' }[it.action]
+      return `**${verb}** el PR ${numbered(it)}`
     }
-    return `${text} · <sub>${fmt.format(new Date(it.date))}</sub>`
+    case 'review':
+      return `**Revisó** el PR ${numbered(it)}`
+    case 'issue': {
+      const verb = { opened: 'Abrió', closed: 'Cerró', reopened: 'Reabrió' }[it.action]
+      return `**${verb}** el issue ${numbered(it)}`
+    }
+    case 'comment':
+      return `**Comentó** en ${numbered(it)}`
+    case 'repo':
+      return '**Creó** el repositorio'
+    case 'tag':
+      return `**Creó** la etiqueta ${ref(it.ref)}`
+    case 'release':
+      return `**Publicó** la versión [${escapeMd(it.ref)}](${it.url})`
+    case 'fork':
+      return it.fork ? `**Hizo fork** → [${escapeMd(it.fork)}](${GH}/${it.fork})` : '**Hizo fork**'
+    case 'star':
+      return '**Dio estrella**'
+    case 'public':
+      return '**Hizo público** el repositorio'
+  }
+}
+
+function icon(it) {
+  if (it.kind === 'pr') return e({ opened: 'prOpened', closed: 'closed', reopened: 'reopened', merged: 'prMerged' }[it.action], 24)
+  if (it.kind === 'issue') return e({ opened: 'issueOpened', closed: 'issueClosed', reopened: 'reopened' }[it.action], 24)
+  return e(it.kind, 24)
+}
+
+// Tabla Markdown: icono · actividad · repositorio · fecha. Los repos propios se
+// muestran sin el dueño; la fecha omite el año si es el actual.
+export function renderActivity(items, { timeZone = 'UTC', owner = null, now = new Date() } = {}) {
+  if (!items.length) return '_Sin actividad pública en los últimos 90 días._'
+  const year = (d) => new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric' }).format(d)
+  const short = new Intl.DateTimeFormat('es-PE', { timeZone, day: 'numeric', month: 'short' })
+  const date = (iso) => {
+    const d = new Date(iso)
+    const text = short.format(d).replace(/\.$/, '')
+    return year(d) === year(now) ? text : `${text} ${year(d)}`
+  }
+  const rows = items.map((it) => {
+    const [user, name] = it.repo.split('/')
+    const label = user === owner ? name : it.repo
+    return `| ${icon(it)} | ${describe(it)} | [${escapeMd(label)}](${GH}/${it.repo}) | <sub>${date(it.date)}</sub> |`
   })
-  return lines.map((l, i) => `${i + 1}. ${l}`).join('\n')
+  return ['| | Actividad | Repositorio | Fecha |', '|:-:|:--|:--|:-:|', ...rows].join('\n')
 }

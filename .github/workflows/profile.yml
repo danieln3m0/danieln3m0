@@ -73,8 +73,8 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake.svg?color_snake=#7aa2f7&color_dots=#ebedf0,#c6d4f8,#9ab4f4,#7aa2f7,#3d59a1
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#bf91f3&color_dots=#1f2335,#2e3a5c,#3d59a1,#7aa2f7,#70a5fd
 
       - name: Comprobar que están todas las imágenes
         run: |

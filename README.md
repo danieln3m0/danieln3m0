@@ -10,9 +10,57 @@
 
 ## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Technologist.png" alt="Technologist" width="30" height="30"/> Sobre Mí
 
-<img align="right" alt="Coding" width="380" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif">
+<table>
+<tr>
+<td width="58%" valign="top">
 
-Soy estudiante de **Ingeniería de Software en la UPC** (Lima, Perú 🇵🇪) y desarrollador **full stack** enfocado en la web. Me gusta construir productos completos: desde interfaces animadas con **Next.js y TypeScript** hasta APIs REST con **Spring Boot** y herramientas en **Python** con agentes de IA.
+### Francis Daniel Mamani Silva
+
+Estudiante de **Ingeniería de Software en la UPC** y desarrollador **full stack** desde Lima, Perú 🇵🇪.
+
+Me gusta construir productos completos: interfaces animadas con **Next.js y TypeScript**, APIs REST con **Spring Boot** y herramientas en **Python** que trabajan con agentes de IA.
+
+<img alt="Ubicación: Lima, Perú" src="https://img.shields.io/badge/Ubicaci%C3%B3n-Lima%2C_Per%C3%BA-70a5fd?style=flat-square&labelColor=1a1b27"/>
+<img alt="Universidad: UPC" src="https://img.shields.io/badge/Universidad-UPC-bf91f3?style=flat-square&labelColor=1a1b27"/>
+<img alt="Rol: Full Stack Developer" src="https://img.shields.io/badge/Rol-Full_Stack_Developer-38bdae?style=flat-square&labelColor=1a1b27"/>
+<img alt="Estado: Abierto a colaborar" src="https://img.shields.io/badge/Estado-Abierto_a_colaborar-e0af68?style=flat-square&labelColor=1a1b27"/>
+
+</td>
+<td width="42%" align="center" valign="middle">
+
+<img alt="Programando" width="100%" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif"/>
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td align="center" valign="top" width="25%">
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Laptop.png" alt="Laptop" width="44" height="44"/><br/>
+<b>Construyendo</b><br/>
+<sub>Mi <a href="https://github.com/danieln3m0/Portafolio">portafolio</a> y <a href="https://github.com/danieln3m0/KeyReu">KeyReu</a>, agentes de IA para reuniones</sub>
+</td>
+<td align="center" valign="top" width="25%">
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Books.png" alt="Books" width="44" height="44"/><br/>
+<b>Aprendiendo</b><br/>
+<sub>Arquitectura con DDD, ethical hacking y agentes de IA</sub>
+</td>
+<td align="center" valign="top" width="25%">
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Speech%20Balloon.png" alt="Speech Balloon" width="44" height="44"/><br/>
+<b>Pregúntame</b><br/>
+<sub>JavaScript/TypeScript, React, Java y Python</sub>
+</td>
+<td align="center" valign="top" width="25%">
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Zzz.png" alt="Zzz" width="44" height="44"/><br/>
+<b>Dato curioso</b><br/>
+<sub>Duermo más de 8 horas al día</sub>
+</td>
+</tr>
+</table>
+
+<details>
+<summary><b>Ver mi perfil como código</b></summary>
 
 ```javascript
 const daniel = {
@@ -24,19 +72,14 @@ const daniel = {
     backend: ["Spring Boot", "Node.js", "Python"],
     datos: ["MySQL", "PostgreSQL", "MongoDB"],
   },
+  construido: ["Portafolio", "KeyReu", "POSLas4as", "html-to-figma"],
   intereses: ["Desarrollo web", "Ciberseguridad", "Programación competitiva", "Anime"],
   hobbies: ["Dormir todo el día", "Resolver CTFs", "Ver anime"],
   estado: "Siempre aprendiendo algo nuevo",
 };
 ```
 
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Telescope.png" alt="Telescope" width="22" height="22" align="top"/> Trabajando en mi [**portafolio**](https://github.com/danieln3m0/Portafolio) (Next.js 15, React 19 y Three.js) y en [**KeyReu**](https://github.com/danieln3m0/KeyReu), agentes de IA que se lanzan en vivo durante una reunión y dejan sus cambios listos para PR
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Brick.png" alt="Brick" width="22" height="22" align="top"/> Construí [**POSLas4as**](https://github.com/danieln3m0/POSLas4as), una API REST de inventario con Spring Boot 3, Java 21 y Domain-Driven Design
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Artist%20Palette.png" alt="Artist Palette" width="22" height="22" align="top"/> Mejoro [**html-to-figma**](https://github.com/danieln3m0/html-to-figma) para convertir nodos del DOM en capas de Figma
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Seedling.png" alt="Seedling" width="22" height="22" align="top"/> Aprendiendo **arquitectura de software (DDD)**, **ethical hacking** y **agentes de IA**
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Speech%20Balloon.png" alt="Speech Balloon" width="22" height="22" align="top"/> Pregúntame sobre **JavaScript/TypeScript, React, Java y Python**
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Handshake.png" alt="Handshake" width="22" height="22" align="top"/> Abierto a colaborar en proyectos **web** y **open source**
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Zzz.png" alt="Zzz" width="22" height="22" align="top"/> Dato curioso: **Duermo más de 8 horas al día**
+</details>
 
 ---
 
@@ -184,15 +227,19 @@ const daniel = {
 ## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/High%20Voltage.png" alt="High Voltage" width="30" height="30"/> Actividad Reciente
 
 <!--START_SECTION:activity-->
-1. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Check%20Mark%20Button.png" alt="Check Mark Button" width="20" height="20" align="top"/> Cerró el issue [\#144 CLI v0.1.251 rejects every response containing the new \`mountain-lodg…](https://github.com/cuevaio/hack-the-andes/issues/144) en [cuevaio/hack-the-andes](https://github.com/cuevaio/hack-the-andes) · <sub>11 oct. 2026</sub>
-2. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Speech%20Balloon.png" alt="Speech Balloon" width="20" height="20" align="top"/> Comentó en [\#144 CLI v0.1.251 rejects every response containing the new \`mountain-lodg…](https://github.com/cuevaio/hack-the-andes/issues/144#issuecomment-6117082890) en [cuevaio/hack-the-andes](https://github.com/cuevaio/hack-the-andes) · <sub>11 oct. 2026</sub>
-3. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Up%20Arrow.png" alt="Up Arrow" width="20" height="20" align="top"/> Hizo 7 pushes a `master` en [danieln3m0/html-to-figma](https://github.com/danieln3m0/html-to-figma) · <sub>10 oct. 2026</sub>
-4. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="20" height="20" align="top"/> Fusionó el PR [\#7 feat\: options API (exclude, nameLayer, defaultFont)](https://github.com/danieln3m0/html-to-figma/pull/7) en [danieln3m0/html-to-figma](https://github.com/danieln3m0/html-to-figma) · <sub>10 oct. 2026</sub>
-5. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="20" height="20" align="top"/> Fusionó el PR [\#6 feat\: name layers after their DOM element (tag\#id.classes)](https://github.com/danieln3m0/html-to-figma/pull/6) en [danieln3m0/html-to-figma](https://github.com/danieln3m0/html-to-figma) · <sub>10 oct. 2026</sub>
-6. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="20" height="20" align="top"/> Fusionó el PR [\#5 fix\: inset shadows, per-side border placement, modern colors, replace…](https://github.com/danieln3m0/html-to-figma/pull/5) en [danieln3m0/html-to-figma](https://github.com/danieln3m0/html-to-figma) · <sub>10 oct. 2026</sub>
-7. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="20" height="20" align="top"/> Fusionó el PR [\#4 fix\: text decoration, alignment and font weight/style fidelity](https://github.com/danieln3m0/html-to-figma/pull/4) en [danieln3m0/html-to-figma](https://github.com/danieln3m0/html-to-figma) · <sub>10 oct. 2026</sub>
-8. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="20" height="20" align="top"/> Fusionó el PR [\#3 fix\: DOM capture bugs (fixed-size detection, orphaned subtrees, live…](https://github.com/danieln3m0/html-to-figma/pull/3) en [danieln3m0/html-to-figma](https://github.com/danieln3m0/html-to-figma) · <sub>10 oct. 2026</sub>
+| | Actividad | Repositorio | Fecha |
+|:-:|:--|:--|:-:|
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Check%20Mark%20Button.png" alt="Check Mark Button" width="24" height="24" align="top"/> | **Cerró** el issue [\#144 · CLI v0.1.251 rejects every response contain…](https://github.com/cuevaio/hack-the-andes/issues/144) | [cuevaio/hack-the-andes](https://github.com/cuevaio/hack-the-andes) | <sub>11 oct</sub> |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Speech%20Balloon.png" alt="Speech Balloon" width="24" height="24" align="top"/> | **Comentó** en [\#144 · CLI v0.1.251 rejects every response contain…](https://github.com/cuevaio/hack-the-andes/issues/144#issuecomment-6117082890) | [cuevaio/hack-the-andes](https://github.com/cuevaio/hack-the-andes) | <sub>11 oct</sub> |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Up%20Arrow.png" alt="Up Arrow" width="24" height="24" align="top"/> | **7 pushes** a `master` | [html-to-figma](https://github.com/danieln3m0/html-to-figma) | <sub>10 oct</sub> |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="24" height="24" align="top"/> | **Fusionó** el PR [\#7 · feat\: options API (exclude, nameLayer, defa…](https://github.com/danieln3m0/html-to-figma/pull/7) | [html-to-figma](https://github.com/danieln3m0/html-to-figma) | <sub>10 oct</sub> |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="24" height="24" align="top"/> | **Fusionó** el PR [\#6 · feat\: name layers after their DOM element (…](https://github.com/danieln3m0/html-to-figma/pull/6) | [html-to-figma](https://github.com/danieln3m0/html-to-figma) | <sub>10 oct</sub> |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="24" height="24" align="top"/> | **Fusionó** el PR [\#5 · fix\: inset shadows, per-side border placeme…](https://github.com/danieln3m0/html-to-figma/pull/5) | [html-to-figma](https://github.com/danieln3m0/html-to-figma) | <sub>10 oct</sub> |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="24" height="24" align="top"/> | **Fusionó** el PR [\#4 · fix\: text decoration, alignment and font we…](https://github.com/danieln3m0/html-to-figma/pull/4) | [html-to-figma](https://github.com/danieln3m0/html-to-figma) | <sub>10 oct</sub> |
+| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Purple%20Heart.png" alt="Purple Heart" width="24" height="24" align="top"/> | **Fusionó** el PR [\#3 · fix\: DOM capture bugs (fixed-size detection…](https://github.com/danieln3m0/html-to-figma/pull/3) | [html-to-figma](https://github.com/danieln3m0/html-to-figma) | <sub>10 oct</sub> |
 <!--END_SECTION:activity-->
+
+<p align="right"><sub>Se actualiza cada 6 horas · <a href="https://github.com/danieln3m0?tab=overview">Ver toda mi actividad →</a></sub></p>
 
 ---
 
