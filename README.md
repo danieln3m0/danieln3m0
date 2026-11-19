@@ -227,11 +227,7 @@ const daniel = {
 ## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/High%20Voltage.png" alt="High Voltage" width="30" height="30"/> Actividad Reciente
 
 <!--START_SECTION:activity-->
-| | Actividad | Repositorio | Fecha |
-|:-:|:--|:--|:-:|
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Up%20Arrow.png" alt="Up Arrow" width="24" height="24" align="top"/> | **Push** a `feat/voice-search` | [hack-andes-buscandoanemo/andes-hack](https://github.com/hack-andes-buscandoanemo/andes-hack) | <sub>18 oct</sub> |
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Up%20Arrow.png" alt="Up Arrow" width="24" height="24" align="top"/> | **2 pushes** a `main` | [hack-andes-buscandoanemo/andes-hack](https://github.com/hack-andes-buscandoanemo/andes-hack) | <sub>18 oct</sub> |
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Up%20Arrow.png" alt="Up Arrow" width="24" height="24" align="top"/> | **Push** a `feat/us-032-01-data-sources-api` | [hack-andes-buscandoanemo/andes-hack](https://github.com/hack-andes-buscandoanemo/andes-hack) | <sub>17 oct</sub> |
+_Sin actividad pública en los últimos 90 días._
 <!--END_SECTION:activity-->
 
 <p align="right"><sub>Se actualiza cada 6 horas · <a href="https://github.com/danieln3m0?tab=overview">Ver toda mi actividad →</a></sub></p>
